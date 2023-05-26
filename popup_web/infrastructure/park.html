@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Park</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+<style>
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+</style </head><body><style>p {
+    font-size: 15px;
+}
+
+h1 {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+h2 {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #2DC4B2;
+}
+
+#console {
+    position: absolute;
+    overflow-y: scroll;
+    top: 0%;
+    height: 100%;
+    width: 17%;
+    background-color: white;
+    opacity: 1;
+    padding: 10px 10px;
+}
+
+.session {
+    margin-bottom: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.row {
+    min-height: 12px;
+    width: 100%
+}
+
+.colors {
+    background: linear-gradient(to right, #2dc4b2, #3bb3c3, #669ec4, #8b88b6, #a2719b);
+    ;
+    margin-bottom: 1%;
+}
+
+.label {
+    width: 13%;
+    display: inline-block;
+    text-align: center;
+}
+
+.story {
+    scrollbar-width: auto;
+    background-color: #F5F5F5;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 0 4px 0;
+    height: 50%;
+    margin-bottom: 20px;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 5px 5px 5px;
+}
+
+body {
+    overflow: hidden;
+}
+
+body * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#after {
+    position: absolute;
+    top: 0;
+    left: 61%;
+    bottom: 0;
+    width: 50%;
+}
+
+#divider {
+    background-color: gray;
+    position: absolute;
+    left: 61%;
+    top: 0;
+    bottom: 0;
+    width: 0.2%;
+    z-index: 2;
+}
+
+.circle {
+    position: relative;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+.line{
+    position: relative; 
+    float: right;
+    width: 15px;
+    height: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+} 
+.rectangle{
+    position: relative;
+    border-radius: 10%;
+    width: 15px;
+    height: 15px;
+    float: right;
+    margin-top: 5px;
+}
+  
+</style>
+</head>
+<body>
+<div id="before"></div>
+<div id='console'>
+    <div id="session">
+      <h1 style="font-family: Arial; font-weight: bold;">Parkland and urban infrastrctures</h1>
+      <p>Brooklyn, one of the five boroughs of New York City, 
+         is known for its diverse neighborhoods, vibrant culture, 
+         and extensive parkland and urban infrastructure. </p>
+      <p>Brooklyn offers numerous parks and green spaces where residents and visitors can relax, 
+         play sports, and enjoy nature. Prospect Park is the largest park in Brooklyn, 
+         covering 526 acres and featuring a lake, a zoo, playgrounds, sports fields, and trails. 
+         Other notable parks include McCarren Park, Brooklyn Bridge Park, Marine Park, and Fort Greene Park. </p>
+      <p>Brooklyn has a well-developed transportation network. 
+         The New York City Subway serves the borough with multiple subway lines, 
+         allowing residents to easily travel within Brooklyn and to other parts of the city. 
+         Several bridges, including the Verrazzano-Narrows Bridge and the Williamsburg Bridge, connect Brooklyn to neighboring areas.</p>
+      <p>From these maps, it is clear that parklands and urban infrastrctures are now present across Brooklyn.
+         Brooklyn's parkland and urban infrastructure contribute to its appeal as a vibrant and livable borough, 
+         offering residents and visitors a wide range of recreational, cultural, and economic opportunities.
+      </p>
+
+      
+      <div class='row labels'>
+
+        <h2>Legend</h2>
+        <div><span class="circle" , style="background-color: rgb(34, 105, 180)"></span>Drinking Fountains</div>
+        <div><span class="circle" , style="background-color: rgb(246, 241, 241)"></span>Subway Stations</div>
+        <div><span class="line" , style="background-color: rgb(216, 130, 65)"></span>Highways</div>
+        <div><span class="line" , style="background-color: rgb(239, 239, 77)"></span>Subway lines</div>
+        <div><span class="rectangle" , style="background-color: rgba(112, 169, 148, 0.5)"></span>Parklands</div>
+        
+        <!-- <div><span class="circle" , style="background-color: rgb(129, 17, 135)"></span>Thirty Largest Parks</div> -->
+        <div><br></div>
+
+      </div>
+    </div>
+
+
+  </div>
+ 
+<script>
+
+
+	mapboxgl.accessToken = 'pk.eyJ1IjoidGhlemhhbyIsImEiOiJjbGRibmZzbTEwMmJwM3JubWVobXl2cThzIn0.fYQu-t1P8UxZ4vOk0Ep6JA';
+    const map = new mapboxgl.Map({
+        container: 'before',
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/thezhao/clhkbrxtk01jv01qud0efbw5c',
+        center: [-73.9742, 40.653061],
+        minzoom: 8,
+        zoom: 11.3
+    });
+    map.addControl(new mapboxgl.NavigationControl());
+    var scale = new mapboxgl.ScaleControl({
+        maxWidth: 80, // Set the maximum width of the scale control
+        unit: 'imperial' // Choose between 'imperial' or 'metric'
+    });
+    map.addControl(scale, 'bottom-right');
+ 
+</script>
+ 
+</body>
+</html>

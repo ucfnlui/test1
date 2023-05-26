@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Park Renewal</title>
+    <link rel="icon" href="image/webImage/Darkgreen_Logo.png" type="image/png">
+    <style>
+        body {
+            width: 100vw;
+            /* Set the page width to the viewport width */
+            /* background-color: rgb(186, 197, 198); */
+            overflow-x: hidden;
+        }
+
+        /* Set the style of the header table of contents bar */
+        #header {
+            background-color: #1C5348;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            height: 30px;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+        }
+
+        /* Wrap five subheadings in a div */
+        #header .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 60px;
+
+        }
+
+        .title {
+            margin-right: 60px;
+        }
+
+
+        .title a {
+            font-size: 14px;
+        }
+
+        /* Set the style of the drop-down bar */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #71A994;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            top: 100%;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Set the style of the small arrow */
+        .dropdown::after {
+            content: "\25BC";
+            font-size: 0.5em;
+            color: white;
+            margin-left: 5px;
+        }
+
+        /* Remove underscores */
+        #header a {
+            float: left;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            font-family: "Arial";
+            color: white;
+
+        }
+
+        /* Change the font color of mouse hover */
+        #header a:hover {
+            color: #417D58;
+        }
+
+        /* Set the color of the drop-down box link on mouse hover */
+        .dropdown-content a:hover {
+            color: #417D58;
+        }
+
+        .content {
+            margin-top: -150px;
+        }
+
+        /* Set the style of the content container */
+        #content1 {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+        }
+
+        #content1 h1 {
+            font-family: "Georgia";
+            font-size: 55px;
+            color: white;
+            /* text-shadow: 2px 2px #000; */
+        }
+
+        #content1 p {
+            font-family: Georgia;
+            font-size: 25px;
+            color: beige;
+            /* text-shadow: 2px 2px #000; */
+        }
+
+
+        #background1 {
+            background-image: url("image/webImage/head1.png");
+            background-repeat: no-repeat;
+            background-position: top left;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+
+
+        #background2 {
+            background-image: url("image/webImage/PaperBackground.png");
+            background-repeat: no-repeat;
+            background-position: top left;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+            height: 100vh;
+            width: 100%;
+        }
+
+
+
+        #background3 {
+            background-image: url("image/webImage/head2.png");
+            background-repeat: no-repeat;
+            background-position: top left;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+
+
+        #background4 {
+            background-image: url("image/webImage/PaperBackground.png");
+            background-repeat: no-repeat;
+            background-position: top left;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+            height: 135vh;
+            width: 100%;
+        }
+
+
+        #background5 {
+            background-image: url("image/webImage/PaperBackground.png");
+            background-repeat: no-repeat;
+            background-position: top left;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+            height: 80vh;
+            width: 100%;
+        }
+
+        #background6 {
+            background-image: url("image/webImage/tail.png");
+            background-repeat: no-repeat;
+            background-position: top left;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+            height: 135vh;
+            width: 100%;
+        }
+
+
+        #content2 {
+
+            /* padding: 20px; */
+            max-width: 100%;
+            /* margin-top: 100px; */
+            /* height: 500px; */
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+
+        }
+
+        #content2 h1 {
+            font-family: "Georgia";
+            font-size: 37px;
+            text-align: center;
+            color: #1C5348;
+            padding-left: 30px;
+            padding-right: 30px;
+
+        }
+
+        #content2 h2 {
+            font-family: "Arial";
+            font-size: 28px;
+            text-align: center;
+            color: #71A994;
+
+        }
+
+
+        .paragraph1 {
+            font-family: Georgia;
+            font-size: 20px;
+            color: black;
+            padding-left: 50px;
+            padding-right: 50px;
+            text-align: justify;
+            overflow: auto;
+            overflow-y: scroll;
+            height: 300px;
+            line-height: 1.5;
+        }
+
+        .paragraph2 {
+            font-family: Georgia;
+            font-size: 20px;
+            color: black;
+            padding-left: 50px;
+            padding-right: 50px;
+            text-align: justify;
+            line-height: 1.5;
+        }
+
+        .paragraph3 {
+            font-family: Georgia;
+            font-size: 20px;
+            color: black;
+            padding-left: 150px;
+            padding-right: 150px;
+            text-align: justify;
+            overflow: auto;
+            overflow-y: scroll;
+            height: 300px;
+            line-height: 1.5;
+        }
+
+        .ref_text {
+            height: 320px;
+        }
+
+        #arrow-link {
+            display: block;
+            transition: transform 0.2s ease;
+        }
+
+        .white_container {
+            height: auto;
+            width: 100px;
+        }
+
+        .box {
+            height: 600px;
+            width: 1100PX;
+            overflow: hidden;
+        }
+
+        .box2 {
+            height: 700px;
+            width: 1100PX;
+            overflow: hidden;
+            /* margin-bottom: 290px; */
+        }
+
+
+        .container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px;
+            overflow: hidden;
+
+        }
+
+
+        #down-arrow {
+            position: relative;
+            top: 0;
+            transition: top 0.3s ease-out;
+        }
+
+        #down-arrow:hover {
+            top: 10px;
+        }
+
+        .left-container2 {
+            width: 65%;
+            /* overflow: hidden; */
+        }
+
+        .left-container1 {
+            width: 50%;
+            /* overflow: hidden; */
+            /* padding-top:100px; */
+            /* padding-bottom: 80px; */
+        }
+
+        .right-container {
+            width: 55%;
+            padding-left: 50px;
+            margin-right: 10px;
+            position: relative;
+        }
+
+        .text-box1 {
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            /* padding-right: 50px; */
+            overflow: auto;
+            /* overflow-y: scroll; */
+            /* padding-bottom: 100px; */
+            padding-right: 150px;
+            width: 760px;
+            height: 460px;
+        }
+
+        .text-box2 {
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-right: 100px;
+            overflow: auto;
+            /* overflow-y: scroll; */
+            /* padding-bottom: 100px; */
+            /* width: 600px; */
+            height: 400px;
+        }
+
+        .text-box1 p {
+            font-family: Georgia;
+            ;
+            /* padding-left: 50px; */
+            height: 500px;
+            width: 660px;
+            position: relative;
+            text-align: justify;
+
+        }
+
+        .text-box2 p {
+            font-family: Georgia;
+            height: 400px;
+            position: relative;
+            text-align: justify;
+
+        }
+
+        .right-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #fff;
+            opacity: 0.8;
+            border-radius: 10px;
+        }
+
+
+
+        .right-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: 2px solid #fff;
+            opacity: 0.8;
+            z-index: -2;
+        }
+
+
+        .develop_container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            /* height: 100vh; */
+            width: 200px;
+            height: 200px;
+            /* margin-bottom: 100px; */
+        }
+
+        .circle_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.5s, transform 1.0s;
+        }
+
+        .circular-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .name-title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .name-title h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .name-title p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        a.anchor {
+            display: block;
+            position: relative;
+            top: -50px;
+            visibility: hidden;
+        }
+
+        .img_header {
+            width: auto;
+            height: 40PX;
+            margin: 30px;
+        }
+
+        .img_tail {
+            position: relative;
+            width: 1640px;
+            /* 设置宽度 */
+            height: auto;
+            margin-top: 100px;
+        }
+
+        .text_pic_container1 {
+            display: flex;
+            align-items: center;
+            width: 1520px;
+            padding-top: 20px;
+            padding-right: 50px;
+            /* 上方空间大小 */
+            padding-bottom: 20px;
+        }
+
+        .text_pic_container2 {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.4);
+            width: 1520px;
+            max-height: 400px;
+            padding-top: 20px;
+            padding-right: 50px;
+            padding-bottom: 20px;
+        }
+
+        .text_impact1 {
+            width: 50%;
+            padding-bottom: 100px;
+            padding-left: 150px;
+            padding-right: 80px;
+            /* 文字和图片各占百分之五十的宽度 */
+            float: left;
+            height: 300px;
+
+        }
+
+        .text_impact2 {
+            width: 50%;
+            padding-bottom: 100px;
+            padding-left: 70px;
+            padding-right: 150px;
+            float: left;
+            height: 300px;
+
+        }
+
+        .text_impact3 {
+            width: 50%;
+            padding-left: 70px;
+            padding-right: 150px;
+            float: left;
+            height: 400px;
+
+        }
+
+        .scrollable-content3 {
+            max-height: 450px;
+            /* Adjust the value as needed */
+            overflow: hidden;
+            /* overflow-y: scroll; */
+        }
+
+        .scrollable-content {
+            max-height: 350px;
+            /* Adjust the value as needed */
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+
+        .scrollable-text {
+            animation: scrollAnimation 15s linear infinite;
+        }
+
+        .paused {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollAnimation {
+            0% {
+                transform: translateY(100%);
+            }
+
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+
+
+
+
+        .image_impact1 {
+            padding-left: 80px;
+        }
+
+        .image_impact2 {
+            padding-right: 80px;
+        }
+
+        .image_impact1 img {
+            width: 600px;
+            height: auto;
+        }
+
+        .image_impact2 img {
+            width: 600px;
+            height: auto;
+        }
+
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .image-wrapper:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .image_popup_left {
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: opacity 0.5s, transform 1.0s;
+        }
+
+        .image_popup_right {
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 0.5s, transform 1.0s;
+        }
+
+        .image_fly_in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .image_popup_bottom {
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.5s, transform 1.0s;
+        }
+
+        .image_fly_in_bottom {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .vertical-center {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 150vh;
+            padding-top: 60px;
+        }
+
+        .vertical-bottom {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            height: 100vh;
+        }
+
+        .green-link {
+            display: inline-block;
+            font-family: Arial;
+            background-color: #1C5348;
+            color: white;
+            padding: 10px 10px;
+            margin-left: 50px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            /* -bottom: 150px; */
+        }
+
+    </style>
+    <script src="myscript.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+
+<body>
+
+    <div id="header">
+        <img class="img_header" src="image/webImage/header_btn.png"></img>
+        <h2>PARK RENEWAL</h2>
+
+        <div class="nav-links">
+            <div class="title"><a href="#" class="smooth-scroll">Home</a></div>
+
+            <div class="dropdown">
+                <div class="title"><a href="#history" class="smooth-scroll">Analysis</a>
+                    <div class="dropdown-content">
+                        <a href="#history" class="smooth-scroll">History</a>
+                        <a href="#infrastructure" class="smooth-scroll">Infrastructure</a>
+                        <a href="#economy" class="smooth-scroll">Economy</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="title"><a href="#urban">Impacts</a>
+                    <div class="dropdown-content">
+                        <a href="#urban_air">On Urban Green</a>
+                        <a href="#urban_air">On Air Pollution</a>
+                        <a href="#population_housing">On Population</a>
+                        <a href="#population_housing">On Housing</a>
+                    </div>
+                </div>
+            </div>
+            <div class="title"><a href="#ack">More</a></div>
+        </div>
+    </div>
+
+    <div id="background1">
+        <div id="content1">
+            <div class="vertical-center">
+                <h1>PARK RENEWAL</h1>
+                <p>Exploring Parks Renewal History & Impacts in Brooklyn, New York City</p>
+            </div>
+
+            <div class="vertical-bottom">
+                <div id="down-arrow">
+                    <a href="#intro">
+                        <img src="image/webImage/down.png" style="height: 50px;" />
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div id="intro"></div>
+    <div id="background3">
+        <div id="content1">
+            <p>
+                Urban renewal in Brooklyn, New York, involves the construction and renewal of a wide range
+                of parks that
+                contribute to the overall revitalisation of the borough. These parks act as important green
+                spaces and
+                community centres, promoting social interaction, recreational activities and environmental
+                sustainability.</br></br>
+
+                Today's diverse and varied park landscape in Brooklyn is a result of its constant renewal
+                and
+                exploration. These parks have been built and renewed at different times due to their unique
+                location,
+                historical elements, functional characteristics, risks and economic factors. A series of
+                projects have
+                been built to help revitalise underutilised areas, provide essential green space and enhance
+                community
+                well-being.</br></br>
+
+                In this website, we seek to explore the historical process, development characteristics and
+                potential
+                impacts of Brooklyn's 'Park Renewal'. This may provide a good reference for the future
+                development of the
+                area and for the application of other urban parks for their construction and optimisation.
+            </p>
+        </div>
+    </div>
+    </div>
+    <div id="quiz">
+        <div id="background5">
+            <div id="content2">
+                <h1>Get off the screens</br>-- let's step into the urban parks!</h1>
+                <p class="paragraph2">
+                    In our travels, we mainly expect to interpret the following 3 questions, i.e.</br></br>
+                    1 What is the process of construction and renewal of Brooklyn Parks and what are its
+                    characteristics?</br></br>
+                    2 What is the current development of the completed Brooklyn Park and its surroundings?</br></br>
+                    3 What are the potential natural and human factors that have impacted by the construction and
+                    regeneration of the park?</br></br>
+
+                    These questions will lead us to further dissect the role and place of parks in urban regeneration.
+                </p>
+                <div id="down-arrow">
+                    <a href="#history">
+                        <img src="image/webImage/down.png" style="height: 45px; padding-top: 50px;" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="history">
+        <div id="background2">
+            <div style="padding-bottom: 0px">
+                <div id="content2">
+                    <h1>Let's go back to 1800s!</h1>
+                    <p class="paragraph2">
+                        You can observe that even if the same parks are in Brooklyn, there is a great difference in the
+                        time
+                        of their construction and the process of their renewal. There are parks that originated in the
+                        1820s, while others only started to be built at the end of the last century or even this
+                        century.
+                    </p>
+                    <div>
+                        <h2>Brooklyn Parks' Initial Construction and Renewal</h2>
+                        <div style="padding-left:0px">
+                            <a href="popup_web/population/parktime.html">
+                                <div class=" image-wrapper">
+                                    <div class="image-overlay"></div>
+                                    <img src="image/popup_image/history.png" alt="Example Image"
+                                        style="height: 400px; width: auto;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="background4">
+        <div style="padding-bottom: 140px">
+            <div id="content2">
+                <h1>Do those large parks have any historical stories?</h1>
+                <p class="paragraph2">
+                    Yes, of course! In Brooklyn, most of these lands, currently used as parks, have undergone historical
+                    changes to become what they are today. Some of them have had fascinating construction experiences,
+                    and
+                    the parks' interior amenities such as playgrounds, sports fields, botanical gardens and even beach
+                    paths
+                    have provided citizens with a rich experience of urban life. Others have been required to preserve
+                    their
+                    natural appearance, even to the extent that they have been artificially restored and planted, in
+                    order
+                    to protect the environment and safeguard species diversity. You may be able to find information on
+                    this
+                    in the map below!
+                </p>
+                <div>
+                    <h2>Brooklyn Parks Construction and Renewal Analysis</h2>
+                    <a href="history.html">
+                        <div class=" image-wrapper">
+                            <div class="image-overlay"></div>
+                            <img src="image/popup_image/history.jpg" alt="Example Image"
+                                style="height: 400px; width: auto;">
+                    </a>
+                </div>
+
+            </div>
+            <div id="down-arrow">
+                <a href="#infrastructure">
+                    <img src="image/webImage/down.png" style="height: 45px; padding-top: 80px; margin-right: 0px" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+    <div id="infrastructure">
+        <div id="background5">
+            <div id="content2">
+                <h1>Meanwhile, local infrastructure and economic development</br>has been undertaken over these years.
+                </h1>
+                <div class="text_pic_container2">
+                    <div class="image_impact1">
+                        <a href="popup_web/infrastructure/park.html">
+                            <div class="image-wrapper">
+                                <div class="image-overlay"></div>
+                                <img class="image_popup_left" src="image/popup_image/infrastructure.jpg">
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class="text_impact3">
+                        <h2 style="color: #71A994;">Parkland and Urban Infrastructure</h2>
+
+                        <p class="paragraph1">
+                            The map of fractures in Brooklyn provides valuable insights into the distribution
+                            and impact of parkland and urban infrastructure across the borough. Brooklyn, being one of
+                            the five boroughs of New York City, is renowned for its diverse neighborhoods, rich cultural
+                            heritage, and extensive network of parks and green spaces.</br>
+                            The borough boasts a plethora of parks and green areas that serve as valuable resources for
+                            both residents and visitors. One prominent example is Prospect Park, spanning an impressive
+                            526 acres. This expansive park offers a variety of amenities, including a picturesque lake,
+                            a zoo, playgrounds, sports fields, and scenic trails for recreational activities. Other
+                            notable parks such as McCarren Park, Brooklyn Bridge Park, Marine Park, and Fort Greene Park
+                            also contribute to the borough's green infrastructure.</br>
+                            Brooklyn benefits from a well-developed urban infrastructure, which supports its vibrant and
+                            livable environment. The transportation network within the borough is robust, with multiple
+                            subway lines of the New York City Subway system connecting various neighborhoods. This
+                            extensive subway network facilitates convenient travel within Brooklyn as well as
+                            connections to other parts of the city. Additionally, several bridges, notably the
+                            Verrazzano-Narrows Bridge and the Williamsburg Bridge, further enhance connectivity by
+                            linking Brooklyn to adjacent areas.</br>
+                            The map depicting fractures in Brooklyn illustrates the widespread presence of parkland and
+                            urban infrastructure throughout the borough. These resources play a vital role in enhancing
+                            Brooklyn's appeal and quality of life. The parks and green spaces offer opportunities for
+                            relaxation, recreation, and communing with nature, fostering a sense of well-being among
+                            residents. Furthermore, these parks serve as hubs for cultural events, festivals, and
+                            community gatherings, contributing to the borough's vibrant atmosphere.</br>
+                            Brooklyn's robust urban infrastructure, including its transportation network and bridges,
+                            facilitates efficient mobility for its residents. The easy accessibility to different
+                            neighborhoods and the connectivity to
+                            neighboring areas ensure seamless travel options for both commuting and exploration.</br>
+                            Collectively, the parkland and urban infrastructure in Brooklyn contribute to the borough's
+                            desirability as a place to live, work, and visit. They provide a wide array of recreational,
+                            cultural, and economic opportunities, enhancing the overall quality of life for residents
+                            and creating an attractive destination for visitors. The presence of well-maintained parks,
+                            along with a comprehensive urban infrastructure, reflects the commitment to creating a
+                            sustainable and thriving borough that prioritizes the well-being and satisfaction of its
+                            residents.</br>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="background5">
+        <div class="left-container1">
+            <div class="container">
+                <div class="box">
+                    <!-- Content from second HTML file -->
+                    <object type="text/html" data="popup_web/infrastructure/accessiblefacilityPie.html"
+                        style="width:100%; height:100%;"></object>
+                </div>
+            </div>
+            <div id="down-arrow">
+                <a href="#economy">
+                    <img src="image/webImage/down.png" style="height: 45px; padding-top: 50px; padding-left: 700px;" />
+                </a>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="text-box1">
+
+                <p class="paragraph1">
+                    The pie chart titled "Accessible Facilities in Brooklyn's Parks" provides a visual
+                    representation of the distribution of different types of facilities available in the parks of
+                    Brooklyn. The chart illustrates the proportion of each facility type, highlighting the emphasis
+                    placed on creating accessible spaces for all individuals to enjoy.</br>
+                    According to the chart, playgrounds comprise the largest portion, accounting for 70% of the
+                    facilities. Playgrounds in Brooklyn's parks are designed to accommodate children of all abilities,
+                    featuring ramps, transfer platforms, and wider pathways that ensure easy access and enjoyment of the
+                    play structures for children with disabilities.</br>
+                    Bathrooms make up 10% of the facilities, indicating the efforts made to provide accessible restroom
+                    options. These bathrooms are equipped with features such as grab bars, lower sinks, and larger
+                    stalls to accommodate individuals with mobility challenges, promoting inclusivity within the park
+                    environment.</br>
+                    Pools represent 5% of the facilities, and special attention has been given to make them accessible.
+                    These pools often offer entry options such as pool lifts, zero-depth entry, or sloped ramps,
+                    allowing individuals with disabilities to enter the water safely and participate in aquatic
+                    activities.</br>
+                    Recreation centers account for 4% of the facilities, offering a range of inclusive programming and
+                    accessible amenities. These centers may include fitness rooms, sports courts, and modified equipment
+                    to ensure individuals with disabilities can actively engage in recreational activities. Ramps,
+                    elevators, and other modifications are implemented to create an inclusive environment for all
+                    visitors.</br>
+                    Tennis courts and basketball courts each make up 4% of the facilities, providing accessible spaces
+                    for sports enthusiasts. These courts may incorporate features such as wheelchair-accessible entry
+                    points or modified court surfaces to accommodate individuals with disabilities.
+                    Beaches and nature centers both represent 1% of the facilities. Efforts are made to provide
+                    accessibility options in Brooklyn's beaches, such as beach mats for wheelchair access, accessible
+                    beach wheelchairs, and nearby accessible restroom facilities. Nature centers also aim to create
+                    inclusive environments, offering accessible trails, exhibits, and programs for individuals with
+                    disabilities.</br>
+                    The distribution of accessible facilities in Brooklyn's parks demonstrates a commitment to ensuring
+                    equal access and enjoyment for all individuals. By providing a variety of inclusive amenities, the
+                    parks contribute to creating an environment that fosters inclusivity, promotes physical activity,
+                    and enriches the overall park experience.</br>
+                    The focus on accessibility not only benefits park visitors but also has broader economic
+                    implications. Proximity to well-maintained parks in Brooklyn has been shown to positively impact
+                    property values in the surrounding areas. Increased demand and higher property prices contribute to
+                    the local economy by boosting the real estate market and generating property tax revenues.
+                    Furthermore, the presence of concession stands, food vendors, and recreational equipment rentals
+                    within the parks adds to the economic vibrancy of the community. These businesses provide services
+                    and generate revenue through sales and rentals, creating entrepreneurial opportunities and
+                    supporting local vendors and suppliers.</br>
+                    Brooklyn's parks also serve as venues for cultural festivals, concerts, and other entertainment
+                    events. These events attract visitors, driving economic activity in terms of ticket sales, food and
+                    beverage sales, merchandise, and associated services. They not only contribute to the local economy
+                    but also promote the local arts and culture scene, foster community engagement, and support local
+                    artists and performers.</br>
+                    In summary, the pie chart reveals the significant emphasis placed on accessibility in Brooklyn's
+                    parks, with a wide range of facilities designed to accommodate individuals of all abilities. This
+                    commitment to inclusivity not only enhances the park experience for visitors but also
+                    contributes to the economic vitality of the surrounding areas.</br>
+
+                </p>
+            </div>
+            <a href="https://www.explorenycparks.com/parks/mcguire-fields" class="green-link">Explore
+                more</a>
+        </div>
+        <div style="clear: both;"></div>
+
+    </div>
+
+    <div id="economy">
+        <div id="background5">
+            <!-- <div class="container"> -->
+            <!-- Content from first HTML file -->
+            <div class="left-container2">
+                <div class="container">
+                    <div class="box">
+                        <!-- Content from first HTML file -->
+                        <object type="text/html" data="popup_web/economy/economyLine.html"
+                            style="width:100%; height:100%;"></object>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-container">
+                <div class="text-box2">
+
+                    <p class="paragraph1">
+                        The line charts titled "Revenue and Expense of Brooklyn Park from 2016 to 2022"
+                        provide a visual representation of the financial trends of Brooklyn's park system over the
+                        specified time period. The revenue chart illustrates the sources of income, including
+                        contributions and grants, government support, program service revenue, and events, while the
+                        expense chart showcases the allocation of funds into program services, management and general,
+                        and fundraising.</br>
+                        Examining the revenue chart, it is evident that the total revenue shows a gradual increase from
+                        2016 to 2020. However, in 2021, there is a significant drop to 60% of the previous year's
+                        revenue, followed by a substantial increase and peak in 2022. Contributions and events are the
+                        two largest sources of revenue throughout the entire period, with contributions remaining
+                        relatively consistent over time. In contrast, all other revenue sources experience a decline in
+                        2021, reaching their lowest levels. Notably, despite the fluctuations, the total revenue
+                        ultimately demonstrates growth over the years.</br>
+                        The expense chart reveals that the total expense of Brooklyn Park is roughly equivalent to the
+                        total revenue. The expenses are divided into three categories: program services, management and
+                        general, and fundraising. Program services consistently represent approximately 80% of the total
+                        expense and follow a similar trend to the overall expenditure. On the other hand, management and
+                        general, as well as fundraising, exhibit relatively minor changes over the analyzed period.
+                        Considering the impact of Brooklyn's parks on the local economy, it is evident that they attract
+                        a substantial number of tourists and visitors. These individuals engage in various recreational
+                        activities, cultural events, and sightseeing, leading to expenditures on accommodations, dining,
+                        shopping, transportation, and related services. This influx of visitors significantly benefits
+                        local businesses. Moreover, the presence of parks creates employment opportunities, both
+                        directly and indirectly. The parks require staff for maintenance, operations, programming, and
+                        administration.</br>
+                        Additionally, the park system generates employment in sectors such as hospitality, tourism,
+                        retail, and event management, thereby stimulating the local job market.</br>
+                        Furthermore, parks serve as venues for recreational activities, sports events, and fitness
+                        programs, contributing to the local economy by supporting businesses such as sports equipment
+                        retailers, fitness studios, trainers, and event organizers. Moreover, individuals participating
+                        in sports leagues and tournaments held within Brooklyn's parks generate additional economic
+                        activity.</br>
+                        In summary, the line charts illustrate the revenue and expense trends of Brooklyn's park system
+                        from 2016 to 2022. The revenue chart demonstrates the sources of income, with contributions and
+                        events being the primary revenue drivers. The total expense aligns closely with the total
+                        revenue, with program services representing the largest portion. Brooklyn's parks play a
+                        significant role in the local economy by attracting tourists, creating employment opportunities,
+                        and supporting various businesses through recreational activities and events.</br>
+                    </p>
+                </div>
+            </div>
+            <div style="clear: both;"></div>
+
+        </div>
+    </div>
+
+
+    <div id="background5">
+        <!-- <div class="container"> -->
+        <!-- Content from first HTML file -->
+        <!-- <div> -->
+        <div class="left-container2">
+            <div class="container">
+                <div class="box">
+                    <!-- Content from second HTML file -->
+                    <object type="text/html" data="popup_web/economy/economyPie.html"
+                        style="width:100%; height:100%;padding-top: 60px;"></object>
+                </div>
+            </div>
+            <div id="down-arrow">
+                <a href="#urban">
+                    <img src="image/webImage/down.png" style="height: 45px; padding-top: 20px; padding-left: 700px;" />
+                </a>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="text-box2">
+                <p class="paragraph1">
+                    In 2021, Brooklyn Park's financial situation is depicted through two pie charts,
+                    highlighting the revenue and expense components. These charts provide an overview of the sources of
+                    revenue and the allocation of funds for expenses during that specific year.</br>
+                    The revenue pie chart for 2021 reveals the following breakdown: contributions and grants account for
+                    32.5% of the total revenue, government support represents 28.4%, program service revenue contributes
+                    26.9%, and events generate 12% of the revenue.</br>
+                    Among the revenue sources, contributions and grants hold the largest proportion, followed closely by
+                    government support and program service revenue. Events make up a smaller portion but still
+                    contribute significantly to the overall revenue stream. These figures reflect the diverse funding
+                    sources that support Brooklyn Park's operations and programs throughout the year.</br>
+                    Turning to the expense pie chart for 2021, the allocation of funds is divided as follows: program
+                    services account for 72.1% of the total expense, fundraising represents 20.1%, and management and
+                    general expenses make up 7.8%.</br>
+                    The largest portion of the expense goes toward program services, which aligns with the park's core
+                    mission of providing recreational activities, maintaining park facilities, and organizing various
+                    programs for the community. Fundraising expenses represent a significant but smaller portion, which
+                    includes activities aimed at generating additional revenue and support for the park. Lastly,
+                    management and general expenses occupy the smallest portion, covering administrative and operational
+                    costs.</br>
+                    Considering the impact of Brooklyn's parks on the local economy, their proximity has been shown to
+                    positively influence property values in the surrounding areas. Homes and commercial properties
+                    situated near well-maintained parks experience increased demand and higher property prices. This
+                    phenomenon contributes to the local economy by boosting the real estate market and generating
+                    property tax revenues.</br>
+                    Furthermore, the presence of concession stands, food vendors, and recreational equipment rentals
+                    within many parks in
+                    Brooklyn contributes to the local economy. These businesses provide services to park visitors and
+                    generate revenue through sales and rentals. Additionally, they create entrepreneurial opportunities
+                    and support local vendors and suppliers, further enhancing the economic ecosystem.</br>
+                    Brooklyn's parks often serve as hosts for cultural festivals, concerts, and other entertainment
+                    events. These gatherings attract visitors from both near and far, leading to economic activity
+                    through ticket sales, food and beverage purchases, merchandise sales, and associated services.
+                    Additionally, these events promote the local arts and culture scene, foster community engagement,
+                    and provide support to local artists and performers.</br>
+                    In summary, the revenue and expense pie charts for 2021 showcase the various sources of revenue and
+                    the allocation of funds within Brooklyn Park. The revenue sources encompass contributions,
+                    government support, program service revenue, and events. Meanwhile, the expense components consist
+                    of program services, fundraising, and management and general expenses. The proximity of parks in
+                    Brooklyn positively impacts property values and contributes to the local economy through real estate
+                    market growth, property tax revenues, concession stands, cultural events, and the support of local
+                    businesses and artists.</br>
+                </p>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+
+    <div id="urban_air">
+        <div id="background4">
+            <div style="margin-top:100px">
+                <div id="content2">
+                    <h1>How about the Park Renewal's potential impact in Brooklyn? </br></br>
+                        As for the impact on national factors...</h1>
+                    <div class="text_pic_container1">
+
+                        <div class="image_impact1">
+                            <a href="popup_web/urban/tree.html">
+                                <div class="image-wrapper">
+                                    <div class="image-overlay"></div>
+                                    <img class="image_popup_left" src="image/popup_image/tree.jpg">
+
+                                </div>
+                            </a>
+                        </div>
+                        <div class="text_impact1">
+                            <h2 style="color: #71A994;">Urban Green</h2>
+                            <p class="paragraph1">
+                                The interactive map of urban green in Brooklyn showcases the distribution of street
+                                trees in 1995, 2005, and 2015. The map utilizes a hexagonal layer that is color-coded
+                                based on the number of trees within each hexagon. Additionally, there is a layer
+                                indicating the presence of parks overlaid on the map. </br>
+                                Over the examined period, the number of street trees in Brooklyn has increased, with the
+                                highest count observed in 2015. Furthermore, the distribution of trees in 2015 appears
+                                to be more evenly spread throughout the borough compared to 1995 and 2005. In the
+                                earlier years, regions in the northern part of Brooklyn tended to have slightly more
+                                street trees.</br>
+                                During this period, tree planting initiatives were implemented to augment the urban tree
+                                canopy in Brooklyn. The planting of new trees brings about various positive impacts.
+                                Firstly, it helps improve air quality by absorbing pollutants and releasing oxygen.</br>
+                                Secondly, street trees provide shade, offering relief from the sun's heat and
+                                contributing to the reduction of the urban heat island effect. Moreover, an enhanced
+                                tree canopy adds to the aesthetic appeal of the neighborhood, creating a more visually
+                                pleasing and welcoming environment.</br>
+                                It is noteworthy that planting a diverse range of tree species is essential. This
+                                practice enhances resilience to diseases, pests, and the effects of climate change.
+                                Furthermore, it promotes biodiversity and fosters a more vibrant and ecologically
+                                balanced urban ecosystem.</br>
+                                During this time, there has been an increase in community engagement in street tree
+                                initiatives. Encouraging community involvement in tree planting, care, and advocacy
+                                yields several benefits. It cultivates a sense of ownership and pride among residents,
+                                raises environmental awareness, and strengthens social connections within the
+                                neighborhood.</br>
+                                Street tree planting also plays a crucial role in mitigating the urban heat island
+                                effect. This phenomenon refers to the higher temperatures experienced in urban areas
+                                compared to the surrounding rural areas.By providing shade and evaporative cooling,
+                                street trees help reduce surface and air temperatures, making the neighborhood more
+                                comfortable and energy-efficient.</br>
+                                Overall, the interactive map of urban green in Brooklyn demonstrates the changing
+                                distribution of street trees over time and highlights the positive impacts of tree
+                                planting initiatives, such as improved air quality, temperature reduction, and community
+                                engagement.</br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text_pic_container2">
+                        <div class="text_impact2">
+                            <h2 style="color: #71A994;">Air Quality</h2>
+                            <p class="paragraph1">
+                                By examining data sourced from NYC Open Data and conducting a comprehensive analysis,
+                                we gained valuable insights into the levels of pollutants, specifically PM2.5 and
+                                nitrogen
+                                dioxide, from 2009 to 2020 in Brooklyn. The findings indicated a consistent and
+                                significant
+                                decrease in the concentrations of these pollutants throughout the entire region during
+                                this
+                                period.</br>
+                                The data allowed us to identify a spatial pattern in the distribution of air pollutants.
+                                Generally, areas with high population densities, characterized by heavy vehicular
+                                traffic
+                                and industrial activities, exhibited higher pollution levels. This is attributed to the
+                                emissions produced by vehicles and the industrial processes in those areas. However, the
+                                presence of parks in Brooklyn played a crucial role in alleviating air pollution.</br>
+                                Parks functioned as natural filters that effectively captured and absorbed pollutants,
+                                leading to an improvement in local air quality. These green spaces acted as carbon
+                                sinks,
+                                using photosynthesis to absorb carbon dioxide (a precursor to PM2.5) and other harmful
+                                substances from the atmosphere. Additionally, the vegetation and trees within the parks
+                                acted as physical barriers, effectively blocking or dispersing pollutants like nitrogen
+                                dioxide emitted from nearby pollution sources.</br>
+                                The combined influence of these factors resulted in lower levels of PM2.5 and nitrogen
+                                dioxide in neighborhoods with a higher density of parks compared to areas lacking such
+                                green
+                                spaces. Over time, as the trees and vegetation in parks grew in size and density, their
+                                capacity to absorb pollutants increased, contributing to a gradual reduction in air
+                                pollution levels.</br>
+                                It is important to note that while parks significantly contribute to improving air
+                                quality,
+                                the overall decline in PM2.5 and nitrogen dioxide levels in Brooklyn from 2009 to 2020
+                                can
+                                be attributed to broader environmental factors such as stricter regulations,
+                                technological
+                                advancements, and changes in energy sources.</br>
+                            </p>
+                        </div>
+                        <div class="image_impact2">
+                            <a href="popup_web/population/air_quality.html">
+                                <div class="image-wrapper">
+                                    <div class="image-overlay"></div>
+                                    <img class="image_popup_right" src="image/popup_image/air.png">
+
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div id="population_housing">
+        <div id="background4">
+            <div style="margin-top:100px">
+                <div id="content2">
+                    <h1> As for the impact on human factors...</h1>
+                    <div class="text_pic_container1">
+
+                        <div class="image_impact1">
+                            <a href="popup_web/population/population.html">
+                                <div class="image-wrapper">
+                                    <div class="image-overlay"></div>
+                                    <img class="image_popup_left" src="image/popup_image/population.png">
+
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="text_impact1">
+                            <h2 style="color: #71A994;">Population Density</h2>
+                            <p class="paragraph1">
+                                Between 1970 and 2010, the population dynamics in Brooklyn, NYC, underwent
+                                significant
+                                transformations across its diverse neighborhoods. Initially, many areas
+                                experienced
+                                a
+                                decline in population due to economic challenges and suburbanization, resulting
+                                in
+                                neglected
+                                parks. However, starting in the 1990s, certain neighborhoods began to experience
+                                population
+                                growth and gentrification, leading to renewed interest in parks and their impact
+                                on
+                                specific
+                                communities.</br>
+                                One notable example is Prospect Park in the neighborhoods of Park Slope and
+                                Prospect
+                                Heights. As population growth surged in the 1990s and early 2000s, Prospect Park
+                                underwent
+                                extensive revitalization efforts. The park's infrastructure was upgraded,
+                                walking
+                                and biking
+                                trails were improved, and new amenities such as sports fields and playgrounds
+                                were
+                                added.</br>
+                                These enhancements made Prospect Park a popular destination for both residents
+                                and
+                                visitors,
+                                attracting families, joggers, and nature enthusiasts. The park's renewal played
+                                a
+                                significant role in the revitalization of Park Slope and Prospect Heights,
+                                contributing to
+                                increased property values and a sense of community cohesion.</br>
+                                In DUMBO (Down Under the Manhattan Bridge Overpass), the Brooklyn Bridge Park
+                                stands
+                                as a
+                                prime example of how park renewal can drive neighborhood transformation.
+                                Formerly an
+                                industrial waterfront area, DUMBO experienced a rapid population increase as
+                                artists,
+                                entrepreneurs, and professionals were drawn to its unique charm. The creation of
+                                Brooklyn
+                                Bridge Park, with its lush green spaces, waterfront promenade, and recreational
+                                amenities,
+                                became a catalyst for further development and investment in DUMBO. The park's
+                                scenic
+                                views
+                                and vibrant programming attracted visitors and residents alike, fostering a
+                                thriving
+                                community and supporting the area's economic growth.</br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text_pic_container2">
+                        <div class="text_impact2">
+                            <h2 style="color: #71A994;">Home Value Index</h2>
+                            <p class="paragraph1">
+                                From 2000 to 2022, the house prices in different areas of Brooklyn, NYC,
+                                experienced significant changes,
+                                influenced by various factors including population growth, neighborhood
+                                transformations, and the renewal of
+                                parks. Overall, Brooklyn witnessed a substantial increase in property values
+                                during this period.<br>
+                                One example of a neighborhood that saw a remarkable surge in house prices is
+                                Williamsburg. In the early 2000s,
+                                Williamsburg underwent a rapid transformation from an industrial area to a
+                                vibrant cultural hub, attracting
+                                artists, young professionals, and entrepreneurs. The renewal of McCarren Park
+                                played a role in this
+                                transformation, as the park became a focal point for community activities and
+                                events. The increased
+                                desirability of Williamsburg, coupled with the park's amenities, contributed to
+                                a surge in house prices,
+                                making it one of the most sought-after neighborhoods in Brooklyn.<br>
+                            </p>
+                        </div>
+                        <div class="image_impact2">
+                            <a href="popup_web/population/house_price.html">
+                                <div class="image-wrapper">
+                                    <div class="image-overlay"></div>
+                                    <img class="image_popup_right" src="image/popup_image/housing.jpg">
+
+                                </div>
+                            </a>
+                        </div>
+
+
+                    </div>
+                    <div id="down-arrow">
+                        <a href="#team">
+                            <img src="image/webImage/down.png" style="height: 45px; padding-top: 30px;" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="ack">
+        <div id="background2">
+            <div style="padding-top:200px">
+                <div id="content2" class="content">
+                    <h1>Acknowledgement</h1>
+                    <p class="paragraph1">
+                        We would like to acknowledge both Dr Duncan Smith and Dr Valerio Signorelli for their kind
+                        assistance and advice during the project. Also, many of our project data and analysis comes from
+                        NYC Parks and NYC Open Data, which help us a lot. Finally, we would like to thank our team for
+                        efforts.
+                    </p>
+                </div>
+
+                <div id="content2" class="content">
+                    <h1>Team Members</h1>
+                    <div class="develop_container">
+                        <div class="circle_container">
+                            <img class="circular-image" src="image/developer/zyq.jpg">
+                            <div class="name-title">
+                                <h2>Yijing Zhang</h2>
+                                <p>Analyst & Designer</p>
+                            </div>
+                        </div>
+                        <div class="circle_container">
+                            <img class="circular-image" src="image/developer/lyj.jpg">
+                            <div class="name-title">
+                                <h2>Yijie Lu</h2>
+                                <p>Web & UI interaction Developer</p>
+                            </div>
+                        </div>
+                        <div class="circle_container">
+                            <img class="circular-image" src="image/developer/bjz.jpg">
+                            <div class="name-title">
+                                <h2>Jinzhao Bai</h2>
+                                <p>Chart & Map Visualization</p>
+                            </div>
+                        </div>
+                        <div class="circle_container">
+                            <img class="circular-image" src="image/developer/sys.jpg">
+                            <div class="name-title">
+                                <h2>Yushen Sun</h2>
+                                <p>Chart & Map Visualization</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="down-arrow">
+                    <a href="#ref">
+                        <img src="image/webImage/down.png"
+                            style="height: 45px; padding-top: 80px;padding-left: 750px;" />
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="ref">
+        <div id="background6">
+            <div style="padding-bottom:400px">
+                <div id="content2">
+                    <h1>Reference</h1>
+                    <div class="ref_text">
+                        <p class="paragraph3">
+                            “NYC Parks Drinking Fountains”. NYC Open Data.[Online] Available:
+                            https://data.cityofnewyork.us/Environment/NYC-Parks-Drinking-Fountains/622h-mkfu.
+                            Accessed on May
+                            16, 2023</br></br>
+
+                            "New York City Population By Community Districts." NYC Open Data. [Online]. Available:
+                            https://data.cityofnewyork.us/City-Government/New-York-City-Population-By-Community-Districts/xi7c-iiu2.
+                            Accessed on May 16, 2023.</br></br>
+
+                            "Community Districts." NYC Open Data. [Online]. Available:
+                            https://data.cityofnewyork.us/City-Government/Community-Districts/yfnk-k7r4. Accessed on
+                            May 16,
+                            2023.</br></br>
+
+                            Housing Data. [Online]. Available: https://www.zillow.com/research/data/. Accessed on
+                            May 16, 2023.</br></br>
+
+                            "Zip Code Boundaries." NYC Open Data. [Online]. Available:
+                            https://data.cityofnewyork.us/Business/Zip-Code-Boundaries/i8iw-xf4u/data. Accessed on
+                            May 16, 2023.</br></br>
+
+                            "Air Quality." NYC Open Data. [Online]. Available:
+                            https://data.cityofnewyork.us/Environment/Air-Quality/c3uy-2p5r. Accessed on May 16,
+                            2023.</br></br>
+
+
+                            “Functional Parkland Map”. NYC Open Data. [Online] Available:
+                            https://data.cityofnewyork.us/Recreation/Functional-Parkland-Map/r2ng-2bhg. Accessed on
+                            May 16, 2023</br></br>
+
+                            “Directory of Accessible Parks Facilities and Programs”. [Online] Available:
+                            https://data.cityofnewyork.us/Recreation/Directory-of-Accessible-Parks-Facilities-and-Progr/e4ej-j6hn.
+                            Accessed on May 16, 2023</br></br>
+
+                            “Subway Stations”. NYC Open Data. [Online] Available:
+                            https://data.cityofnewyork.us/Transportation/Subway-Stations/arq3-7z49. Accessed on May
+                            16, 2023</br></br>
+
+                            “Subway Lines”. NYC Open Data. [Online] Available:
+                            https://data.cityofnewyork.us/Transportation/Subway-Lines/3qz8-muuu. Accessed on May 16,
+                            2023</br></br>
+
+                            “WATERFRONT MATTERS SPRING 2022”. [Online] Available:
+                            https://www.brooklynbridgepark.org/wp-content/uploads/2022/04/3.21-2022-Annual-Report-Final_FY-2021.pdf.
+                            Accessed on May 16, 2023</br></br>
+
+
+
+
+                        </p>
+
+                    </div>
+                    <a href="#ref">
+                        <img src="image/webImage/github.png" style="height: 45px; margin-bottom: 200px;" />
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+
+</body>
+
+</html>

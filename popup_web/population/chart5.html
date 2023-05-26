@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Park Development Chart</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 93vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #chart {
+      margin-bottom: -40px;
+    }
+
+    .legend {
+      display: flex;
+      align-items: center;
+      font-size: 60%
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+    }
+
+    .legend-item .color-box {
+      width: 20px;
+      height: 12px;
+      margin-right: 8px;
+
+    }
+      
+    .y-axis text,
+    .x-axis text {
+      font-size: 90%;
+    }
+      
+  </style>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+  <svg id="chart"></svg>
+
+  <div class="legend">
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(113, 169, 148, 0.8);"></div>
+      <div>Renewal After the Initial Construction</div>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(28, 83, 72, 0.8);"></div>
+      <div>Becoming Nearly Current View Via Renewal</div>
+    </div>
+  </div>
+    
+  <script>
+    const parkData = [
+      {
+        parkName: "Marine Park",
+        initialConstruction: 1920,
+        becomingNearlyCurrent: 2013,
+        current: 2023
+      },
+      {
+        parkName: "Prospect Park",
+        initialConstruction: 1867,
+        becomingNearlyCurrent: 2017,
+        current: 2023
+      },
+      {
+        parkName: "Belt and Shore Parkway",
+        initialConstruction: 1940,
+        becomingNearlyCurrent: 1941,
+        current: 2023
+      },
+      {
+        parkName: "Dyker Beach Park",
+        initialConstruction: 1895,
+        becomingNearlyCurrent: 1934,
+        current: 2023
+      },
+      {
+        parkName: "Coney Island Beach & Boardwalk",
+        initialConstruction: 1824,
+        becomingNearlyCurrent: 1938,
+        current: 2023
+      },
+      {
+        parkName: "Canarsie Park",
+        initialConstruction: 1895,
+        becomingNearlyCurrent: 1997,
+        current: 2023
+      },
+      {
+        parkName: "Highland Park",
+        initialConstruction: 1891,
+        becomingNearlyCurrent: 1998,
+        current: 2023
+      },
+      {
+        parkName: "Spring Creek Park",
+        initialConstruction: 1938,
+        becomingNearlyCurrent: 1995,
+        current: 2023
+      },
+      {
+        parkName: "Paerdegat Basin Park",
+        initialConstruction: 1998,
+        becomingNearlyCurrent: 1998,
+        current: 2023
+      },
+      {
+        parkName: "Calvert Vaux Park",
+        initialConstruction: 1933,
+        becomingNearlyCurrent: 2013,
+        current: 2023
+      },
+      {
+        parkName: "McGuire Fields",
+        initialConstruction: 1970,
+        becomingNearlyCurrent: 2002,
+        current: 2023
+      },
+      {
+        parkName: "Four Sparrow Marsh",
+        initialConstruction: 1997,
+        becomingNearlyCurrent: 1997,
+        current: 2023
+      },
+      {
+        parkName: "Red Hook Recreation Area",
+        initialConstruction: 1934,
+        becomingNearlyCurrent: 1937,
+        current: 2023
+      },
+      {
+        parkName: "Brooklyn Botanic Garden",
+        initialConstruction: 1911,
+        becomingNearlyCurrent: 2000,
+        current: 2023
+      },
+      {
+        parkName: "Fresh Creek Nature Preserve",
+        initialConstruction: 1996,
+        becomingNearlyCurrent: 1996,
+        current: 2023
+      },
+      {
+        parkName: "McCarren Park",
+        initialConstruction: 1903,
+        becomingNearlyCurrent: 1997,
+        current: 2023
+      },
+      {
+        parkName: "Manhattan Beach Park",
+        initialConstruction: 1942,
+        becomingNearlyCurrent: 1970,
+        current: 2023
+      },
+      {
+        parkName: "Ocean Parkway Malls",
+        initialConstruction: 1868,
+        becomingNearlyCurrent: 1995,
+        current: 2023
+      },
+      {
+        parkName: "Fort Greene Park",
+        initialConstruction: 1945,
+        becomingNearlyCurrent: 2020,
+        current: 2023
+      },
+      {
+        parkName: "Kaiser Park",
+        initialConstruction: 1934,
+        becomingNearlyCurrent: 1941,
+        current: 2023
+      },
+      {
+        parkName: "Eastern Parkway",
+        initialConstruction: 1866,
+        becomingNearlyCurrent: 1928,
+        current: 2023
+      },
+      {
+        parkName: "Owl's Head Park",
+        initialConstruction: 1928,
+        becomingNearlyCurrent: 2004,
+        current: 2023
+      },
+      {
+        parkName: "Sunset Park",
+        initialConstruction: 1891,
+        becomingNearlyCurrent: 1960,
+        current: 2023
+      },
+      {
+        parkName: "Brooklyn Bridge Park",
+        initialConstruction: 2002,
+        becomingNearlyCurrent: 2018,
+        current: 2023
+      }
+    ];
+
+    const margin = { top: 30, right: 50, bottom: 80, left: 200 }; // Increased left margin
+    const width = 700 - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
+
+    const svg = d3.select("#chart")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    const xScale = d3.scaleLinear()
+      .domain([1800, 2023])
+      .range([0, width]);
+
+    const yScale = d3.scaleBand()
+      .domain(parkData.map(park => park.parkName))
+      .range([0, height])
+      .padding(0.3);
+
+    const colorScale = d3.scaleOrdinal()
+      .domain(["Initial Construction", "Becoming Nearly Current View Via Renewal", "Current"])
+      .range(["rgba(217, 217, 217, 0.8)", "rgba(28, 83, 72, 0.8)", "rgba(230, 244, 205, 0.8)"]);
+
+    const yAxis = d3.axisLeft(yScale)
+      .tickPadding(10) // Increase padding between ticks and labels
+      .tickSize(0); // Remove tick lines
+
+    const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
+
+    svg.append("g")
+      .attr("class", "y-axis")
+      .call(yAxis)
+      .selectAll("text")
+      .attr("x", -10) // Move the labels to the left
+      .attr("text-anchor", "end");
+
+    svg.append("g")
+      .attr("class", "x-axis")
+      .attr("transform", `translate(0, ${height})`)
+      .call(xAxis);
+
+    const parkGroups = svg.selectAll(".park-group")
+      .data(parkData)
+      .enter()
+      .append("g")
+      .attr("class", "park-group")
+      .attr("transform", d => `translate(0, ${yScale(d.parkName)})`);
+
+    parkGroups.append("rect")
+      .attr("class", "bar")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", d => xScale(d.initialConstruction) - xScale(1800))
+      .attr("height", yScale.bandwidth())
+      .attr("fill", "rgba(217, 217, 217, 0.8)");
+
+    parkGroups.append("rect")
+      .attr("class", "bar")
+      .attr("x", d => xScale(d.initialConstruction))
+      .attr("y", 0)
+      .attr("width", d => xScale(d.becomingNearlyCurrent) - xScale(d.initialConstruction))
+      .attr("height", yScale.bandwidth())
+      .attr("fill", "rgba(113, 169, 148, 0.8)");
+
+    parkGroups.append("rect")
+      .attr("class", "bar")
+      .attr("x", d => xScale(d.becomingNearlyCurrent))
+      .attr("y", 0)
+      .attr("width", d => xScale(d.current) - xScale(d.becomingNearlyCurrent))
+      .attr("height", yScale.bandwidth())
+      .attr("fill", "rgba(28, 83, 72, 0.8)");
+
+    const dottedLines = svg.selectAll(".dotted-line")
+      .data(xScale.ticks(10).filter(d => d % 20 === 0 && d !== 1800)) 
+      .enter()
+      .append("line")
+      .attr("class", "dotted-line")
+      .attr("x1", d => xScale(d))
+      .attr("y1", 0)
+      .attr("x2", d => xScale(d))
+      .attr("y2", height)
+      .attr("stroke", "rgba(190, 190, 190, 0.8)")
+      .attr("stroke-dasharray", "2,2");
+
+
+  </script>
+</body>
+
+</html>

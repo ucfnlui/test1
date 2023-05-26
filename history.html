@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Brooklyn Parks Construction and Renewal Analysis</title>
+    <style>
+        /* 设置全局样式 */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            /* width: 1100px; */
+            /* margin: 0 auto; */
+            /* 调整容器宽度和居中对齐 */
+        }
+
+        .sidenav {
+            float: left;
+            flex: 0 0 600px;
+            width: 600px;
+            height: 100%;
+            background-color: #f1f1f1;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .box {
+            flex: 1;
+            /* margin-left: 610px; */
+            /* 调整与侧边栏的距离 */
+            width: 600px;
+            height: auto;
+            overflow: hidden;
+        }
+
+        /* 设置抽屉式导航栏样式 */
+        .dropdown-btn {
+            width: 100%;
+            padding: 8px 16px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-btn:hover {
+            background-color: rgb(113, 169, 148);
+        }
+
+        .dropdown-container {
+            display: none;
+            padding-left: 20px;
+            overflow-y: scroll;
+            height: 500px;
+            /* 设置固定高度 */
+        }
+
+        /* 显示文本框 */
+        .active {
+            display: block;
+        }
+
+        #content {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: left;
+            /* 将文本向左对齐 */
+        }
+
+        #content h1 {
+            font-family: "Aharoni Bold";
+            font-size: 8px;
+            color: #1C5348;
+        }
+
+        #content p {
+            font-family: Arial, sans-serif;
+            font-size: 6px;
+            color: black;
+        }
+
+        #image-wrapper {
+            padding-top: -2650px;
+            width: 520px;
+        
+            height: auto;
+            
+        }
+
+        #image-wrapper img {
+            width: 100%;
+            height: auto;
+        }
+
+        .green-link {
+            display: inline-block;
+            background-color: #1C5348;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+    </style>
+    <title>侧边导航栏</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidenav">
+            <button class="dropdown-btn" data-value1="-73.921470" data-value2="40.598066" data-value3="13.73">Marine
+                Park</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <div id="image-wrapper">
+                        <img src="image/ParkPictures/1.png">
+                    </div>
+                    <p>
+                        Marine Park Map </br>
+                        Source: <a href="https://www.marineparkalliance.org/visitor-info/">Marine Park
+                            Alliance</a></br></br>
+
+                        Marine Park is located in the south-eastern corner of Brooklyn, and is the largest public park
+                        in
+                        Brooklyn, with an area of 3,229,391 sq m (Source: NYC Parks). There are three main sections to
+                        the
+                        entire park: Marine Park proper, Gerritsen Beach proper, and the golf course and adjoining salt
+                        marsh and uplands. The two main buildings within the park are the Salt Marsh Nature Center and
+                        the
+                        Carmine Carro Community Center. The outdoor facilities provide courts and fields for an array of
+                        sports.</br></br>
+
+                        1917 - philanthropists Frederick B. Pratt and Alfred T. White gifted the city 607,028 sq m in
+                        the
+                        area for use as a park.</br>
+                        1920s - The park was built and was originally a tidal marshland.</br>
+                        1930s - It was transformed into a park as part of a large-scale land reclamation project.</br>
+                        1937 - New land purchases increased the park’s area to 7,373,372 sq m. The Board of Aldermen
+                        named
+                        the site “Brooklyn Marine Park.”</br>
+                        1939 - The Pratt-White athletic field was dedicated in tribute to the two fathers of Marine
+                        Park.</br>
+                        1963 – A 849,840 sq m golf course opened</br>
+                        1974 – 4,143,980 sq m were transferred to the National Park Service for inclusion in the Gateway
+                        National Recreation Area.</br>
+                        1984 - Nature trails established along Gerritsen Creek.</br>
+                        Late 20th century - Ongoing improvements include the reconstruction of basketball, tennis, and
+                        bocce
+                        courts.
+                        2000 - The Salt Marsh Nature Center opened</br>
+                        2013 - The Carmine Carro Community Center opened</br></br>
+
+                        <a href="https://www.marineparkalliance.org/the-park/history/" class="green-link">Explore
+                            more</a>
+
+
+                    </p>
+                </div>
+            </div>
+            <button class="dropdown-btn" data-value1="-73.967978" data-value2="40.661575" data-value3="13.91">Prospect
+                Park</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <div id="image-wrapper">
+                        <img src="image/ParkPictures/2.png">
+                    </div>
+                    <p>
+                        Prospect Park Map </br>
+                        Source: <a
+                            href="https://www.prospectpark.org/visit-the-park/park-map/">prospectpark.org</a></br></br>
+
+                        Prospect Park is located in the middle of Brooklyn, and is the second largest public park in
+                        Brooklyn, behind Marine Park, with an area of 2,128,646 sq m (Source: NYC Parks). The Park is
+                        part
+                        of the Brooklyn-Queens Greenway, a network of green spaces that stretch across western Long
+                        Island.
+                        Main attractions include the Long Meadow, the Picnic House, Litchfield Villa, Prospect Park Zoo,
+                        the
+                        Boathouse, Concert Grove, Brooklyn's only lake, the Prospect Park Bandshell, as well as the
+                        sports
+                        facilities. </br></br>
+
+                        1858 - Prospect Park was laid out by Frederick Law Olmsted and Calvert Vaux</br>
+                        1867 - The park opened</br>
+                        1873 - The park substantially completed</br>
+                        1935 - A NYC Parks commissioner Robert Moses launch many development projects, including the
+                        Prospect Park Zoo, new playgrounds around the Park’s perimeter, etc.</br>
+                        Late 20th century - The Prospect Park Alliance created. Late 1980s, they refurbished many parts
+                        of
+                        the park.</br>
+                        1975 - The park was designated a New York City scenic landmark.</br>
+                        1980 - The park was listed on the National Register of Historic Places.</br>
+                        1987 - Prospect Park Alliance created. </br>
+                        Mid 1990s - Alliance embarked on a $9 million woodlands restoration</br>
+                        Late 2000s - The southeast corner was reshaped.</br>
+                        2009 - The Alliance announced a radical redesign.</br>
+                        2017- The Alliance began the restoration of the landscapes in northeast corner -- the
+                        Vale. </br></br>
+
+                        <a href="https://www.prospectpark.org/visit-the-park/general-info/" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.971887" data-value2="40.613747" data-value3="12.22">Belt and
+                Shore Parkway</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/3.png" style="max-width: 100%; height: auto;">
+                    </div>
+                        <p>
+                            Belt and Shore Parkway Map </br>
+                            Source: <a
+                                href=" https://www.nyc.gov/html/dot/downloads/pdf/shore-pkwy-greenway-connector-apr2019.pdf">nyc.gov</a></br></br>
+
+                            Belt and Shore Parkway is located in the south-west of Brooklyn. The Shore Parkway, Southern
+                            Parkway, Laurelton Parkway, and Cross Island Parkway are collectively known as the "Belt
+                            System".
+                            The Belt Parkway was one of many parkways in the New York metropolitan area built by Robert
+                            Moses.
+                            Moses considered Shore Parkway, and the rest of the Belt Parkway, to be a “continuous park
+                            system,
+                            not merely an automobile artery, a system of shoestring parks and recreational facilities
+                            encircling
+                            the entire metropolis….”. </br></br>
+
+                            1930 - The Belt Parkway was proposed by Moses.</br>
+                            1940 - The Belt Parkway System opened.</br>
+                            1941 - A 19,000 m bike path along the Southern Brooklyn section of the Belt Parkway
+                            opened</br></br>
+
+                            <a href="https://www.nycgovparks.org/parks/B166/highlights/11917" class="green-link">Explore
+                                more</a>
+
+
+                        </p>
+                    
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-74.021384" data-value2="40.610663" data-value3="14.64">Dyker
+                Beach Park</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <p>
+                        Dyker Beach Park Map </br>
+                        Source: <a
+                            href=" https://www.nycgovparks.org/parks/dyker-beach-park/map">dyker-beach-park</a></br></br>
+
+                        Dyker Beach Park is located in the West of Brooklyn, assembled from eight pieces of land over
+                        the
+                        course of forty years. Dyker Beach Park has developed into a lively park that serves the varied
+                        needs of its diverse community. The facilities in the park make it the only golf course in the
+                        city
+                        dedicated to serving and teaching young golfers. </br></br>
+
+                        1895 - The City of Brooklyn purchased the first parcel from the Dyker Meadow Land Improvement
+                        Company for a park. The landscape architecture firm of Olmsted, Olmsted & Eliot planned a
+                        50-acre
+                        saltwater lagoon, children's playgrounds, bathhouses, lawns, and drives along the shore.</br>
+                        1911 - Some of the plans were revised by Charles D. Lay, former landscape architect of the Park
+                        Board. He proposed to decrease the size of the lagoon to 16 acres and add several concert
+                        groves.</br>
+                        1918 – The work began to fill a swampy area of the park.</br>
+                        1924-27 - Four additional parcels were acquired by assignment and condemnation.</br>
+                        Dyker Beach Park is located in the West of Brooklyn, assembled from eight pieces of land over
+                        the
+                        course of forty years. Dyker Beach Park has developed into a lively park that serves the varied
+                        needs of its diverse community. The facilities in the park make it the only golf course in the
+                        city
+                        dedicated to serving and teaching young golfers.</br>
+                        1934 - Another three lots were transferred to Parks.</br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/dyker-beach-park/history" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.979680" data-value2="40.576919" data-value3="13.53">Coney
+                Island Beach & Boardwalk</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/5.jpeg">
+                    </div>
+                    <p>
+                        Coney Island Beach & Boardwalk Map </br>
+                        Source: <a
+                            href=" https://ontheworldmap.com/usa/city/new-york-city/map-of-coney-island-brighton-beach.html">map-of-coney-island-brighton-beach</a></br></br>
+
+                        Coney Island Beach & Boardwalk is located in the South of Brooklyn, and its nearly 3 miles of
+                        sandy
+                        beaches offers an ideal summer respite from the city. </br></br>
+
+                        1824 - The Coney Island House was established as a seaside resort.</br>
+                        1920 - The BMT subway line reached the area.</br>
+                        1921 - After the city secured title to property along the beachfront, the $3 million beach
+                        improvement and boardwalk construction began.</br>
+                        1923 - "Coney Island's Fifth Avenue" opened.</br>
+                        1938 - Parks was awarded jurisdiction of the beach and boardwalk, and Coney Island was given a
+                        $3
+                        million facelift. After several times of reconstruction, the boardwalk became an enduring symbol
+                        of
+                        New York City.</br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/coney-island-beach-and-boardwalk/highlights/204"
+                            class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.900112" data-value2="40.627590" data-value3="14.27">Canarsie
+                Park</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <p>
+                        Canarsie Park Map is located in the East of Brooklyn, near the sea and close to the
+                        Paerdegat Basin Park.</br></br>
+
+                        1895-96 - The City of Brooklyn purchased land for Canarsie Park.</br>
+                        1934 - It was extended with land from the Department of Docks</br>
+                        1936 - The in 1936 playground at East 93rd Street and Seaview Avenue was built</br>
+                        1938 & 1949 - It was extended with parcels from the Board of Estimate.</br>
+                        1950s - Parks Commissioner Robert Moses requested the transfer of land that had been used for
+                        temporary housing during World War II to expand Canarsie Park.</br>
+                        1995-97 - The playground built in 1936 was renovated.</br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/canarsie-park/history">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.891736" data-value2="40.690433" data-value3="13.35">Highland
+                Park</button>
+
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/7.png">
+                    </div>
+                    <p>
+                        Highland Park Map </br>
+                        Source: <a
+                            href=" https://pittsburghparks.org/explore-your-parks/regional-parks/highland-park/">highland-park</a></br></br>
+
+                        Highland Park is situated on a high plateau in the Northeast of Brooklyn, straddling Brooklyn
+                        and
+                        Queens. The park commands dramatic views of nearby cemeteries, East New York, Woodhaven, the
+                        Rockaways, and the Atlantic Ocean. </br></br>
+
+                        1856 - The City of Brooklyn acquired land here for the site of the Ridgewood Reservoir, which
+                        operated from the 1860s until 1985.</br>
+                        1891- the City of Brooklyn purchased the land surrounding the reservoir for park purposes under
+                        the
+                        jurisdiction of the Highland Park Society.</br>
+                        1901-05 - The Brooklyn Department of Parks initiated substantial improvements to the property,
+                        then
+                        known as Ridgewood Park. Several new structures were built. Landscaping efforts laid out roads
+                        and
+                        footpaths, created a new lake with a fountain, and reclaimed a swamp for the site of a flower
+                        garden.</br>
+                        1905 - Parks extended the property to the south by purchasing the Schenck estate.</br>
+                        1906-08 - Highland Park took its present shape</br>
+                        1907 - An aquatic garden with water lilies and other water plants was created</br>
+                        1915 - The children’s farm gardens were planted in 1915</br>
+                        1991 - Some projects have improved recreational and educational facilities</br>
+                        1998 - The playground in Upper Highland Park was renovated.</br></br>
+
+                        <a href="https://pittsburghparks.org/explore-your-parks/regional-parks/highland-park/"
+                            class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.867103" data-value2="40.644918" data-value3="12.83">Spring
+                Creek Park</button>
+
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/8.png">
+                    </div>
+                    <p>
+                        Spring Creek Park Map </br>
+                        Source: <a
+                            href="https://www.scapestudio.com/projects/spring-creek-connector/">pring-creek-connector</a></br></br>
+
+                        Spring Creek Park is located in the East of Brooklyn, almost entirely marshland.
+                        It contains the largest tract of undeveloped land and wetlands in the northern Jamaica Bay area.
+                        </br></br>
+
+                        1938 - The original land for Spring Creek Park was acquired by condemnation for the construction
+                        of
+                        the Shore Parkway section of the Belt Parkway, which runs through the park.</br>
+                        1992 - the Department of Real Property assigned another section of property to NYC Parks, more
+                        than
+                        doubling the size of the park.</br>
+                        1994 -1995, two more parcels in Queens, on Fairfield Avenue, were added to the park. </br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/spring-creek-park-b165/history"
+                            class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.904052" data-value2="40.620815" data-value3="13.96">Paerdegat
+                Basin Park</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/9.png">
+                    </div>
+                    <p>
+                        Paerdegat Basin Park View </br>
+                        Source: <a
+                            href="https://www.hazenandsawyer.com/news/paerdegat-cso-facility-project-turns-fetid-mess-into-serene-wetland">paerdegat-cso-facility-project-turns-fetid-mess-into-serene-wetland</a></br></br>
+
+                        Paerdegat Basin Park is located in the East of Brooklyn, whose name means “horse gate,” in Dutch
+                        is
+                        a saltwater wetland area. It is surrounded by two neighborhoods that were developed in the
+                        1960s.</br></br>
+
+                        1998 - It was acquired by Parks from the Department of Citywide Administrative Services and it
+                        serves as home to many species of birds and smaller water creatures. </br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/paerdegat-basin-park/history"
+                            class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.995231" data-value2="40.584936" data-value3="14.86">Calvert
+                Vaux Park</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <p>
+                        Calvert Vaux Park is located in the East of Brooklyn. The land for this park was obtained
+                        through
+                        three land acquisitions. It offers water views and glimpses of the winged wildlife naturally
+                        attracted to such an ideal setting, as well as a playground, a main entry rain garden, two
+                        synthetic
+                        turf fields, some sports courts and a newly restored waterfront.</br></br>
+
+                        1933 - The Dreier-Offerman Home for unwed mothers and children closed and donated its property
+                        to
+                        NYC Parks. In appreciation, Parks originally named it Dreier-Offerman Park.</br>
+                        1962 - NYC Parks simultaneously acquired two additional parcels: a small strip of land in 1964
+                        and a
+                        72-acre tract consisting of property and landfill debris excavated during the construction of
+                        the
+                        Verrazano-Narrows Bridge.</br>
+                        1998 - NYC Parks renamed the open space in honor of distinguished designer Calvert Vaux.</br>
+                        2000 - NYC Parks rebuilt the playground and added a new comfort station, open lawns, a
+                        children’s
+                        play area, basketball courts, and a children’s spray shower.</br>
+                        2007 - Calvert Vaux Park was selected for restoration as part of the City’s PlaNYC initiative,
+                        in
+                        which eight parks citywide were transformed into attractive regional destinations.</br>
+                        2013 - through the PlaNYC project, Parks constructed two new synthetic turf fields, restored
+                        aquatic
+                        and coastal habitats, a main entry rain garden, and the field house. </br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/calvert-vaux-park/history" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.904062" data-value2="40.612330" data-value3="13.50">McGuire Fields</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <p>
+                   
+
+                        <a href="https://www.nycgovparks.org/parks/calvert-vaux-park/history" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.908516" data-value2="40.600980" data-value3="14.39">Four
+                Sparrow Marsh</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/11.png">
+                    </div>
+                    <p>
+                        Four Sparrow Marsh Natural Areas Map in 2006 </br>
+                        Source: <a
+                            href="https://www.nycgovparks.org/sub_about/parks_divisions/nrg/documents/Ecological_Assessment_Four_Sparrow_Marsh.pdf">parks_divisions</a></br></br>
+
+                        Four Sparrow Marsh is located in the East of Brooklyn. It is an unspoiled stretch of native
+                        wildlife, and one of three nature preserves on the southern tip of Brooklyn.</br></br>
+
+                        1968 - The city proposed a marina with a shopping center and park on the site of Four Sparrow
+                        Marsh.</br>
+                        1994 - the city assigned nearly 65 acres of the marsh to the Parks Department.</br>
+                        1997 - it was dedicated as a park. </br></br>
+
+                        <a href="https://hiddenwatersblog.wordpress.com/2019/02/25/sparrows/" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-74.006871" data-value2="40.671303" data-value3="14.86">Red Hook
+                Recreation Area</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/12.png">
+                    </div>
+                    <p>
+                        Red Hook Recreation Area Map </br>
+                        Source: <a
+                            href="https://thebridgebk.com/remarkable-recovery-business-red-hook/red-hook-resilience-map/">red-hook-resilience-map/</a></br></br>
+
+                        Red Hook Recreation Area is located in the Northwest of Brooklyn. The park contains a paved
+                        path,
+                        benches, a flagpole with a yardarm, a drinking fountain, handball courts, baseball fields, a
+                        soccer
+                        and football field, picnic tables, the adjacent Sol Goldman Pool, and new trees and
+                        plantings.</br></br>
+
+                        1913 - The City acquired the first piece of land for what is now Red Hook Park, originally to
+                        provide terminal facilities for the marginal freight railroad.</br>
+                        1934 - The property was assigned to Parks.</br>
+                        1935-47 - The other parcels came under Parks jurisdiction. Gilmore D. Clarke, one of America’s
+                        most
+                        prominent landscape designers at the time, laid out the original development plan for the
+                        Recreational Center during the tenure of Parks Commissioner Robert Moses. </br></br>
+
+                        <a href=" https://www.nycgovparks.org/parks/red-hook-park/history" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.965695" data-value2="40.667193" data-value3="14.98">Brooklyn
+                Botanic Garden</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/13.png">
+                    </div>
+                    <p>
+                        Brooklyn Botanic Garden Map </br>
+                        Source: <a
+                            href="https://yourbrooklynguide.com/brooklyn-botanic-garden/">YourBrooklynGuide</a></br></br>
+
+                        Brooklyn Botanic Garden is located in the of Brooklyn, originally a marshy wasteland, but has
+                        been
+                        transformed into one of New York City’s most beautiful parks. The present garden is largely the
+                        product of Harold Caparn</br>
+
+                        Originally a marshy wasteland, the Brooklyn Botanic Garden has been transformed into one of New
+                        York
+                        City’s most beautiful parks. The Wisconsin Iceberg that shaped Long Island, Manhattan, and the
+                        Bronx
+                        millions of years ago gave this land its unique knob-and-kettle terrain of small ponds and hills
+                        by
+                        carving depressions in the soil.</br></br>
+
+                        1864 - The City of Brooklyn acquired the site for the Brooklyn Botanic Garden.</br>
+                        1897 - The eastside land went unused for several years until the New York State Legislature
+                        established the Botanic Garden.</br>
+                        1902 - The site was known as Institute Park when the museum opened.</br>
+                        1911- The Brooklyn Botanic Garden opened to the public.</br>
+                        1912 - The landscape architect Harold Caparn took charge of the project, which makes most of the
+                        garden at present.</br>
+                        1914 - The Children’s Garden opened</br>
+                        1915 - Takeo Shiota designed the Japanese Hill-and-Pond Garden</br>
+                        1917 - The Brooklyn Botanic Garden Auxiliary was formed</br>
+                        1921 - The Lily Pool Terrace was constructed</br>
+                        1925 - Shakespeare Garden was finished.</br>
+                        1928 - The Cranford Rose Garden completed.</br>
+                        1938 - The Herb Garden was build by works Progress Administration (WPA) labor.</br>
+                        1939 - The Italian-style Osborne Garden was also constructed with labor from the Civil Works
+                        Administration and the WPA.</br>
+                        1941 - The Kwanzan cherry trees (Prunus serrulata) along the Cherry Esplanade were planted
+                        1955 - The Fragrance Garden, designed by Alice Recknagel Ireys.</br>
+                        1985 - The Brooklyn Union Gas Company donated the Celebrity Path.</br>
+                        1993 - The Lily Pool Terrace was renovated.</br>
+                        1995 - The Fragrance Garden was restored</br>
+                        1996 - The Discovery Garden opened.</br>
+                        1999-2000 - The Japanese Garden underwent a major restoration. </br></br>
+
+                        <a href=" https://www.bbg.org/about/history" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.887220" data-value2="40.643270" data-value3="13.91">Fresh
+                Creek Nature Preserve</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <p>
+                        Fresh Creek Nature Preserve is located in the East of Brooklyn, and one of Brooklyn’s hidden
+                        bastions of wildlife, Fresh Creek Park contains 169,968 sq m of salt marsh. Not all of Fresh
+                        Creek
+                        is accessible to the public, but the tranquil land off of its eastern shore provides a haven for
+                        bird-watching, and walks along the path along the marsh offer the opportunity to catch rare
+                        glimpses
+                        of untamed Brooklyn.</br></br>
+
+                        1996 - Fresh Creek Nature Preserve was completed in 1996 when it was officially designated as a
+                        preserve(constructed landscape).</br></br>
+
+                        <a href=" https://www.nycgovparks.org/parks/fresh-creek-park/highlights/19724"
+                            class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.952468" data-value2="40.721056" data-value3="15.07">McCarren
+                Park</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/15.png">
+                    </div>
+                    <p>
+                        McCarren Park Map </br>
+                        Source: <a
+                            href="https://www.brooklynpaper.com/hot-dog-mccarren-park-getting-grills-picnic-tables-in-time-for-summer/">www.brooklynpaper.com</a></br></br>
+
+                        McCarren Park is located in the North of Brooklyn, on the border of Williamsburg and Greenpoint.
+                        The
+                        park contains facilities for games and is also used for sunbathing and dog-walking. It includes
+                        the
+                        McCarren Play Center, which consists of a recreation center and a pool. </br></br>
+
+                        1903-1905 - The New York City government acquired land for McCarren Park.</br>
+                        1909 - It was renamed McCarren Park after State Senator Patrick H. McCarren.</br>
+                        1935-1936 - The pool was built.</br>
+                        1980s - Pool was slated for renovation, but later closed due to opposition from the
+                        community.</br>
+                        2012 - The pool and play center were restored.</br>
+                        2021 - NYC Parks planned to restore the bathhouse. </br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/mccarren-park" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.946127" data-value2="40.577883" data-value3="14.60">Manhattan
+                Beach Park</button>
+
+            <div class="dropdown-container">
+                <div id="content">
+                    <p>
+                        Manhattan Beach Park is located in the South of Brooklyn, and is a popular summertime
+                        destination for people from all over New York City.</br>
+                        In 1866, Frederick Law Olmsted and Calvert Vaux conceived of a network of wide, tree-lined
+                        avenues that would cut across the grid of Brooklyn and link its open spaces. Modeled after the
+                        Avenue de L’Impératrice (now the Avenue Foch) in Paris, Olmsted and Vaux’s new roads differed
+                        from their French predecessors in that they stretched for several miles. They were intended to
+                        provide sumptuous green corridors along which citizens could live and take pleasure drives. Two
+                        of them were built along Olmsted and Vaux’s newly designed Prospect Park: Eastern Parkway,
+                        running from Prospect Park to Crown Heights, and Ocean Parkway, connecting Prospect Park to
+                        Coney Island. </br></br>
+
+                        1877 - Manhattan Beach was created by real estate developer Austin Corbin as a self-contained
+                        summer resort on 500 acres of salt marsh.</br>
+                        1907 - Residential development began</br>
+                        1942 - The land on this site was originally acquired by the Federal Government.</br>
+                        1955 - An additional 24.4 acres were acquired</br>
+                        1997 - It was renovated under a $778,000 capital project funded by Borough President Golden and
+                        Councilmember Anthony D. Weiner. </br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/manhattan-beach-park/history"
+                            class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.973372" data-value2="40.616737" data-value3="12.25">Ocean
+                Parkway Malls</button>
+
+            <div class="dropdown-container">
+                <div id="content">
+                    <p>
+                        Ocean Parkway Malls is located in the middle of Brooklyn, and extends over a distance of about 8
+                        km, running almost north to south from Machate Circle at the southwestern corner of Prospect
+                        Park to the Atlantic Ocean waterfront at Brighton Beach.</br></br>
+
+                        1868 - The City of Brooklyn acquired the land for Ocean Parkway.</br>
+                        1874&1876 - The Parkway was built.</br>
+                        1950s - Ocean Parkway’s northernmost section was replaced with the Prospect Expressway.</br>
+                        1970s - Equestrian culture on Ocean Parkway came to an end when the bridle path on the eastern
+                        roadway was removed during restoration </br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/ocean-parkway-malls/history"
+                            class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.976661" data-value2="40.691623" data-value3="15.52">Fort
+                Greene Park</button>
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/18.png">
+                    </div>
+                    <p>
+                        Fort Greene Park Map </br>
+                        Source: <a
+                            href="https://www.nycgovparks.org/planning-and-building/capital-project-tracker/project/9990">NYC
+                            Parks</a></br></br>
+
+                        Fort Greene Park is located in the North of Brooklyn. Hundreds of years after its early use for
+                        the good of the Revolution, Fort Greene Park continues to reward its neighborhood. A basketball
+                        court, playgrounds, and tennis courts, not to mention enriching events, sloping hills, and
+                        majestic trees, are a magnet for visitors from all walks of life.</br></br>
+
+                        1845 - The City of Brooklyn designated the site for use as a public park</br>
+                        1847 - The legislature approved an act to secure land for Washington Park on the site of the old
+                        fort. The improvements were complete by 1850.</br>
+                        1867 - Landscape architects Frederick Law Olmsted and Calvert Vaux, designers of Central and
+                        Prospect Parks, were engaged to prepare a new design for Washington Park.</br>
+                        1905 - With funds available for a permanent monument to the prison ship martyrs, the renowned
+                        architectural firm of McKim, Mead and White was hired.</br>
+                        1930s - Parks architect Gilmore D. Clarke regraded the grounds.</br>
+                        1995 - The $1,166,000 capital reconstruction of the park’s northwest playground was funded by
+                        Council Member Mary Pinkett. </br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/fort-greene-park/history" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.995892" data-value2="40.580003" data-value3="15.20">Kaiser
+                Park</button>
+
+            <div class="dropdown-container">
+                <div id="content">
+                    <p>
+                        Kaiser Park is located in Southwest the of Brooklyn. Kaiser Park features notable bird migration
+                        watching. Bird watchers have witnessed a large variety of bird species migrating through Kaiser
+                        Park.</br></br>
+
+                        1934-1937 - The land on which Kaiser Park is located was acquired by New York City Parks
+                        Department.</br>
+                        1988 - the tennis courts were rebuilt.</br>
+                        1993 - The park underwent extensive renovations after a large winter storm damaged the
+                        park.</br>
+                        1994 - An effort in March moved tons of displaced sand back to the shoreline.</br>
+                        2020 - The city planned to build a NYC Ferry dock along the creek off Kaiser Park.</br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/leon-s-kaiser-park" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-73.947205" data-value2="40.670469" data-value3="13.40">Eastern
+                Parkway</button>
+
+            <div class="dropdown-container">
+                <div id="content">
+                    <p>
+                        Eastern Parkway is located in north-central part of Brooklyn. Eastern Parkway divided two
+                        communities: Crow Hill (now Crown Heights) to the south and Weeksville, an African-American
+                        settlement to the north.</br></br>
+
+                        1866 - Eastern Parkway, the world's first parkway, was conceived by Frederick Law Olmsted and
+                        Calvert Vaux in.</br>
+                        1870-1874 - The parkway was constructed from Grand Army Plaza to Ralph Avenue (the boundary of
+                        Brooklyn)</br>
+                        Key additions in the development of the surrounding area include：</br>
+                        1892-1901 - The Soldiers and Sailors Memorial Arcsh in Grand Army Plaza.</br>
+                        1915 - The construction of the IRT subway resulted in the eradication of many original trees,
+                        pavement, and light fixtures.</br>
+                        1928 - Two buildings of note are Turner Towers, at 135 Eastern </br>
+                        1941 - Brooklyn Public Library, Brooklyn Bot north-central part of the city. </br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/B029/history" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-74.032722" data-value2="40.639860" data-value3="15.74">Owl's Head
+                Park</button>
+
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/21.png">
+                    </div>
+                    <p>
+                        Owl's Head Park Map </br>
+                        Source: <a href="https://www.radiofreebayridge.org/episode/owls-head-walking-tour/">Radio Free
+                            Bay Ridge</a></br></br>
+
+                        Owl's Head Park is located in West the of Brooklyn. The spacious property contains rolling
+                        hills, peaceful, meandering pathways, and breathtaking views of the New York skyline and
+                        striking Verrazano Narrows Bridge.</br></br>
+
+                        1928- The land was designated a park upon acquisition of the remaining corners of the site.</br>
+                        1940 - The mansion, stables, and tower were demolished.</br>
+                        2004 - The original wrought iron gates from the Bliss Estate with the initials EWB were
+                        reinstalled in the park’s southeastern entrance. </br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/owls-head-park/history" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-74.008740" data-value2="40.649486" data-value3="14.57">Sunset
+                Park</button>
+
+            <div class="dropdown-container">
+                <div id="content">
+                    <p>
+                        Sunset Park is located in the Southeast of Brooklyn, between 41st and 44th Streets and Fifth and
+                        Seventh Avenues. It is 103,195 sq m. From the park’s highest point, the Statue of Liberty,
+                        vibrant Brooklyn neighborhoods, and the green hills of Staten Island and New Jersey can be seen.
+                        There is an equally diverse terrain: a state-of-the-art swimming pool, green fields, pedestrian
+                        walkways, a sand volleyball court, a recreation center, and a living memorial.</br></br>
+
+                        1891 - The city of Brooklyn acquired the land as part of its plan to build several parks
+                        citywide.</br>
+                        1904 - The park would be expanded southward to 44th Street.</br>
+                        1909 - There was significant development in the area surrounding the park, and the immediate
+                        surrounding area became known as "Sunset Park" as well.</br>
+                        1936 - Designed in a neoclassical/Art Deco style, the pool first opened its waters to the
+                        public.</br>
+                        1960s - With aid from federal, state, and local agencies, Sunset Park slowly began redeveloping.
+                        </br></br>
+
+                        <a href="https://www.nycgovparks.org/parks/sunset-park" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+
+            <button class="dropdown-btn" data-value1="-74.002036" data-value2="40.695493" data-value3="14.33">Brooklyn
+                Bridge Park</button>
+
+            <div class="dropdown-container">
+                <div id="content">
+                    <div class="image-wrapper">
+                        <img src="image/ParkPictures/23.png">
+                    </div>
+                    <p>
+                        Bridge Park, Site Plan </br>
+                        Source: <a
+                            href="https://placesjournal.org/article/building-brooklyn-bridge-park-an-interview-with-matthew-urbanski/">Michael
+                            Van Valkenburgh Associates</a></br></br>
+
+                        Brooklyn Bridge Park is a 343,983 park on the Brooklyn side of the East River in New York City.
+                        Designed by landscape architecture firm Michael Van Valkenburgh Associates. From north to south,
+                        the park includes the preexisting Empire–Fulton Ferry and Main Street Parks; the historic Fulton
+                        Ferry Landing; and Piers 1–6, which contain various playgrounds and residential developments.
+                        </br></br>
+
+                        2002 - After the city and state signed a joint agreement, site planning and project funding
+                        proceeded.</br>
+                        2007 - The first work involved the demolition of a warehouse under the Brooklyn Bridge.</br>
+                        2010 - The park's first portion, Pier 1, opened.</br>
+                        2010 - Pier 6, located at the intersection of Furman Street and Atlantic Avenue was the second
+                        section of parkland to open.</br>
+                        2012 - Pier 5 officially opened with three athletic fields, two playgrounds and a picnic
+                        area.</br>
+                        2013 - the Greenway Terrace opened on the shoreline adjacent to Pier 3.</br>
+                        2014 - A former warehouse dock, the 5-acre (2.0 ha) Pier 2 opened and is dedicated to active
+                        recreation.</br>
+                        2014 - Pier 4 was repurposed from a former railroad car float bridge that had rotted and sunk
+                        into the East River.</br>
+                        2018 - The park was 90% complete. </br></br>
+
+                        <a href="https://www.brooklynbridgepark.org" class="green-link">Explore
+                            more</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <!-- Content from second HTML file -->
+            <object type="text/html" data="popup_web/history/parkSelection.html"
+                style="width:100%; height:100%;"></object>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // 获取所有按钮元素
+        var dropdownBtns = document.querySelectorAll('.dropdown-btn');
+
+        // 当前已经打开的按钮
+        var currentOpenBtn = null;
+
+        // 为每个按钮绑定点击事件
+        // 为每个按钮绑定点击事件
+
+        // 为每个按钮绑定点击事件
+        dropdownBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var value1 = this.getAttribute('data-value1');
+                var value2 = this.getAttribute('data-value2');
+                var value3 = this.getAttribute('data-value3');
+
+                // 构建包含查询参数的URL
+                var url = 'popup_web/history/parkSelection.html?value1=' + value1 + '&value2=' + value2 + '&value3=' + value3;
+
+                console.log(url)
+                // 获取parkSelection.html文件的<object>元素
+                // 获取parkSelection.html文件的<object>元素的父元素
+                // 获取parkSelection.html文件的<object>元素的父元素
+                var parentElement = document.querySelector('.box');
+
+                // 获取parkSelection.html文件的<object>元素
+                var objectElement = parentElement.querySelector('object');
+
+                // 创建一个新的<object>元素
+                var newObjectElement = document.createElement('object');
+                newObjectElement.setAttribute('type', 'text/html');
+                newObjectElement.setAttribute('data', url);
+                newObjectElement.style.width = '100%';
+                newObjectElement.style.height = '100%';
+
+                // 将新的<object>元素替换掉旧的<object>元素
+                if (objectElement) {
+                    parentElement.replaceChild(newObjectElement, objectElement);
+                    objectElement = newObjectElement;
+                }
+
+
+                // 获取该按钮对应的文本框
+                var dropdownContent = this.nextElementSibling;
+
+                // 判断当前按钮的下拉内容状态
+                var isOpen = dropdownContent.style.display === 'block';
+
+                // 关闭当前打开的下拉内容（如果有）
+                if (currentOpenBtn !== null && currentOpenBtn !== this) {
+                    currentOpenBtn.nextElementSibling.style.display = 'none';
+                    currentOpenBtn.classList.remove('active');
+                }
+
+                // 切换当前按钮的下拉内容状态
+                if (!isOpen) {
+                    dropdownContent.style.display = 'block';
+                    this.classList.add('active');
+                    currentOpenBtn = this;
+                } else {
+                    dropdownContent.style.display = 'none';
+                    this.classList.remove('active');
+                    currentOpenBtn = null;
+                }
+            });
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>

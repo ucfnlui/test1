@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Interactive Map with Time-Slider</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #slider-container {
+            position: absolute;
+            top: 0px;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.75);
+            padding: 10px;
+        }
+
+        .image-container {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: auto;
+            height: auto;
+            max-width: 120px;
+            max-height: 240px;
+            overflow: hidden;
+        }
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: bottom left;
+        }
+
+        #lineContainer {
+            width: 500px;
+            height: 400px;
+            display: inline-block;
+        }
+
+        #console {
+            position: absolute;
+            overflow-y: scroll;
+            top: 0%;
+            height: 100%;
+            width: 17%;
+            background-color: white;
+            opacity: 1;
+            padding: 10px 10px;
+        }
+
+        #slider-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #slider-title {
+            margin-bottom: 10px;
+        }
+
+        #line-chart-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="map"></div>
+
+    <div id='slider-container'>
+        <div class='map-overlay top' id='slider'>
+            <div class='map-overlay-inner'>
+                <h2>Home Value Index in Brooklyn: 2000 - 2022</h2>
+                <input id='time-slider' type='range' min='0' max='22' step='1' value='0' list='tickmarks' />
+                <datalist id="tickmarks">
+                    <option value="0" label="2000">
+                    <option value="1" label="2001">
+                    <option value="2" label="2002">
+                    <option value="3" label="2003">
+                    <option value="4" label="2004">
+                    <option value="5" label="2005">
+                    <option value="6" label="2006">
+                    <option value="7" label="2007">
+                    <option value="8" label="2008">
+                    <option value="9" label="2009">
+                    <option value="10" label="2010">
+                    <option value="11" label="2011">
+                    <option value="12" label="2012">
+                    <option value="13" label="2013">
+                    <option value="14" label="2014">
+                    <option value="15" label="2015">
+                    <option value="16" label="2016">
+                    <option value="17" label="2017">
+                    <option value="18" label="2018">
+                    <option value="19" label="2019">
+                    <option value="20" label="2020">
+                    <option value="21" label="2021">
+                    <option value="22" label="2022">
+                </datalist>
+                <label id='slider-value'></label>
+            </div>
+        </div>
+        <div id="lineContainer">
+            <canvas id="parkChart"></canvas>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img class="logo" src="legend_houseprice.png" alt="Logo">
+    </div>
+
+    <script src="house.js"></script>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic3l1c2hlbiIsImEiOiJjbGQxN2U1bmQwMjdtM3ZxdWNta3E2MmV3In0.rvGzzVnUolUbfkv27XDdVg';
+
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/syushen/clhqb42xo01xr01pg00p514vh', // stylesheet location
+            center: [-74, 40.6782], // center on Brooklyn
+            minZoom: 8,
+            zoom: 10.7 // set zoom level
+        });
+
+        map.addControl(new mapboxgl.NavigationControl());
+
+        map.on('load', function () {
+            // Add the House_price layer to the map
+            map.addLayer({
+                id: 'House_price',
+                type: 'fill',
+                source: {
+                    type: 'vector',
+                    url: 'mapbox://syushen.94mpydnn' // Your Mapbox tileset Map ID
+                },
+                'source-layer': 'B_House_Price_YearG2-dj7ezz', // name of tileset layer
+                'layout': {
+                    'visibility': 'visible'
+                },
+                paint: {
+                    'fill-color': [
+                        'interpolate',
+                        ['linear'],
+                        ['get', 'house_price'],
+                        97567, ['rgb', 241, 225, 225], // Color for the lowest house price
+                        1479724, ['rgb', 159, 97, 157] // Color for the highest house price
+                    ],
+                    'fill-opacity': 0.8,
+                    'fill-outline-color': 'white'
+                }
+            });
+
+            // Scale
+            var scale = new mapboxgl.ScaleControl({
+                maxWidth: 80, // Set the maximum width of the scale control
+                unit: 'imperial' // Choose between 'imperial' or 'metric'
+            });
+            map.addControl(scale, 'bottom-right');
+
+            // Declare timeSlider
+            var timeSlider = document.getElementById('time-slider');
+            var sliderValue = document.getElementById('slider-value');
+            var currentYear = parseInt(timeSlider.value) + 2000;
+
+
+            // Add the base Parks layer
+            map.addLayer({
+                id: 'Parks',
+                type: 'fill',
+                source: {
+                    type: 'vector',
+                    url: 'mapbox://syushen.3w22t1dq' // Your Mapbox tileset Map ID
+                },
+                'source-layer': 'B2ParkLand-4wdqbu', // name of tileset layer
+                paint: {
+                    'fill-color': ['rgb', 173, 219, 117],
+                    'fill-opacity': 0.8,
+                }
+            });
+
+            var timeSlider = document.getElementById('time-slider');
+            var sliderValue = document.getElementById('slider-value');
+
+            timeSlider.addEventListener('input', function (e) {
+                var year = parseInt(e.target.value) + 2000;
+                sliderValue.innerHTML = year;
+                updateMapData(year);
+            });
+
+            function updateMapData(year) {
+                map.setFilter('Population_density', ['==', 'year', year]);
+            }
+
+            // Set initial year to 2000
+            var initialYear = 2000;
+            timeSlider.value = initialYear - 2000;
+            sliderValue.innerHTML = initialYear;
+            updateMapData(initialYear);
+
+            // Add the BigParks layer
+            map.addLayer({
+                id: 'BigParks',
+                type: 'fill',
+                source: {
+                    type: 'vector',
+                    url: 'mapbox://syushen.5l0yiq7a' // Your Mapbox tileset Map ID
+                },
+                'source-layer': 'B2ParkLand_Top24_4-aatm8t', // name of tileset layer
+                paint: {
+                    'fill-color': [
+                        'case',
+                        ['<', initialYear, ['get', 'InitialConstruction']],
+                        ['rgb', 191, 207, 204], // Fill color if the condition is true (year < InitialConstruction)
+                        ['<', initialYear, ['get', 'BecomingNearlyCurrentViewViaRenewal']],
+                        ['rgb', 113, 169, 148], // Fill color if the condition is false (year < BecomingNearlyCurrentViewViaRenewal)
+                        ['rgb', 28, 83, 72] // Fill color if the condition is false (year >= BecomingNearlyCurrentViewViaRenewal)
+                    ],
+                    'fill-opacity': 0.8
+                }
+            });
+
+            timeSlider.addEventListener('input', function (e) {
+                var year = parseInt(e.target.value) + 2000;
+                sliderValue.innerHTML = year;
+                currentYear = year; // Update the current year variable
+                updateMapData(year);
+            });
+
+            function updateMapData(year) {
+                map.setPaintProperty('BigParks', 'fill-color', [
+                    'case',
+                    ['<', year, ['get', 'InitialConstruction']],
+                    ['rgb', 191, 207, 204], // Fill color if year < InitialConstruction
+                    ['<', year, ['get', 'BecomingNearlyCurrentViewViaRenewal']],
+                    ['rgb', 113, 169, 148], // Fill color if year < BecomingNearlyCurrentViewViaRenewal
+                    ['rgb', 28, 83, 72] // Fill color if year >= BecomingNearlyCurrentViewViaRenewal
+                ]);
+            }
+
+            // Add the boundaries for highlightes regions
+
+            // Define the colors for different ZIPCODE values
+            var colorMap = {
+                '11211': 'rgb(172,211,104)',
+                '11215': 'rgb(28,83,72)',
+                '11217': 'rgba(0,0,0,0)',
+                '11201': 'rgb(67,159,116)'
+            };
+
+            // Add the polygon layer
+
+            map.addSource('polygon-source', {
+                type: 'vector',
+                url: 'mapbox://syushen.bjoun4xq'
+            });
+
+            map.addLayer({
+                'id': 'polygon-layer',
+                'type': 'line',
+                'source': 'polygon-source',
+                'source-layer': 'myfile-37ag7o',
+                'paint': {
+                    'line-color': {
+                        'property': 'ZIPCODE',
+                        'type': 'categorical',
+                        'stops': [
+                            ['11211', colorMap['11211']],
+                            ['11215', colorMap['11215']],
+                            ['11217', colorMap['11217']],
+                            ['11201', colorMap['11201']]
+                        ],
+                        'default': '#000000' // Default border color for other ZIPCODE values
+                    },
+                    'line-opacity': 1,
+                    'line-width': 3
+                }
+            });
+
+            // Add the ZIPCode Labels layer
+            map.addLayer({
+                id: 'ZIPCodeLabels',
+                type: 'symbol',
+                source: {
+                    type: 'vector',
+                    url: 'mapbox://syushen.bjoun4xq' // Your Mapbox tileset Map ID
+                },
+                'source-layer': 'myfile-37ag7o', // name of tileset layer
+                layout: {
+                    'text-field': [
+                        'match',
+                        ['get', 'ZIPCODE'],
+                        '11211', 'Williamsburg',
+                        '11215', 'Parkslope',
+                       // '11217', 'Parkslope',
+                        '11201', 'DUMBO',
+                        '',
+                    ],
+                    'text-font': ['Open Sans Regular'],
+                    'text-size': 12,
+                    'text-anchor': 'center',
+                    'text-allow-overlap': true,
+                },
+                paint: {
+                    'text-color': 'black',
+                    'text-opacity': 0.8,
+                }
+            });
+
+
+
+            var timeSlider = document.getElementById('time-slider');
+            var sliderValue = document.getElementById('slider-value');
+
+            timeSlider.addEventListener('input', function (e) {
+                var year = parseInt(e.target.value) + 2000;
+                sliderValue.innerHTML = year;
+                updateMapData(year);
+            });
+
+            function updateMapData(year) {
+                map.setPaintProperty('House_price', 'fill-color', [
+                    'interpolate',
+                    ['linear'],
+                    ['get', year.toString()], // Updated to the appropriate property name
+                    97567, ['rgb', 241, 225, 225], // Color for the lowest house price
+                    1479724, ['rgb', 159, 97, 157] // Color for the highest house price
+                ]);
+
+
+                map.setPaintProperty('BigParks', 'fill-color', [
+                    'case',
+                    ['<', year, ['get', 'InitialConstruction']],
+                    ['rgb', 191, 207, 204], // Fill color if year < InitialConstruction
+                    ['<', year, ['get', 'BecomingNearlyCurrentViewViaRenewal']],
+                    ['rgb', 113, 169, 148], // Fill color if year < BecomingNearlyCurrentViewViaRenewal
+                    ['rgb', 28, 83, 72] // Fill color if year >= BecomingNearlyCurrentViewViaRenewal
+                ]);
+            }
+
+            // Set initial year to 2000
+            var initialYear = 2000;
+            timeSlider.value = initialYear - 2000;
+            sliderValue.innerHTML = initialYear;
+            updateMapData(initialYear);
+        });
+
+        map.on('mouseleave', 'House_price', function () {
+            map.getCanvas().style.cursor = '';
+        });
+
+        // Create a pop-up element
+        var popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false
+        });
+
+        // Keep track of the last hovered feature
+        var hoveredFeature = null;
+
+        // Add event listener to update the pop-up on mousemove
+        map.on('mousemove', 'House_price', function (e) {
+            var year = parseInt(document.getElementById('time-slider').value) + 2000;
+            var price = e.features[0].properties[year.toString()]; // Updated to the appropriate property name
+
+            // Check if the hovered feature has changed
+            if (e.features[0] !== hoveredFeature) {
+                hoveredFeature = e.features[0];
+
+                // Update the pop-up content
+                popup.setLngLat(e.lngLat)
+                    .setHTML('Home Value Index: ' + price)
+                    .addTo(map);
+            }
+        });
+
+        // Add event listener to remove the pop-up when leaving the layer
+        map.on('mouseleave', 'House_price', function () {
+            popup.remove();
+            hoveredFeature = null; // Reset the hovered feature
+        });
+    </script>
+</body>
+
+</html>

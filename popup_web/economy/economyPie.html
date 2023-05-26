@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>New York Parks Economy Analysis</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    #chartContainer {
+      width: 390px;
+      height: 390px;
+      display: inline-block;
+      margin-left: 3%;
+      margin-right: 5%;
+    }
+
+    #chartContainer2 {
+      width: 500px;
+      height: 500px;
+      display: inline-block;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1 style="text-align: center;color:#71A994;font-family: Arial;
+  font-size: 28px;">Revenue and Expense Components of Brooklyn Parks in 2021</h1>
+  <div style="padding-left:70px">
+    <div id="chartContainer" style="align:center;">
+      <canvas id="parkChart1"></canvas>
+    </div>
+    <div id="chartContainer" style="align:center;">
+      <canvas id="parkChart2"></canvas>
+    </div>
+  </div>
+
+  <script src="pie.js"></script>
+</body>
+
+</html>

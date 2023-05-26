@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Interactive Map with Time-Slider</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #slider-container {
+            position: absolute;
+            width: 680px;
+            top: 0px;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.75);
+            padding: 10px;
+        }
+
+        .image-container {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: auto;
+            height: auto;
+            max-width: 150px;
+            max-height: 250px;
+            overflow: hidden;
+        }
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: bottom left;
+        }
+
+        .chart-container {
+            position: absolute;
+            top: 120px;
+            left: 0px;
+            width: 700px;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .chart-container iframe {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <div id='slider-container'>
+        <div class='map-overlay top' id='slider'>
+            <div class='map-overlay-inner'>
+                <h2>Brooklyn Parks’ Initial Construction and Renewal</h2>
+                <input id='time-slider' type='range' min='0' max='40' step='1' value='0' list='tickmarks' />
+                <datalist id="tickmarks">
+                    <!-- Options omitted for brevity -->
+                </datalist>
+                <label id='slider-value'></label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="image-container">
+        <img class="logo" src="legend_parktime.png" alt="Logo">
+    </div>
+
+
+    <div class="chart-container">
+        <iframe src="chart5.html"></iframe>
+    </div>
+
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic3l1c2hlbiIsImEiOiJjbGQxN2U1bmQwMjdtM3ZxdWNta3E2MmV3In0.rvGzzVnUolUbfkv27XDdVg';
+
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/syushen/clhqb42xo01xr01pg00p514vh', // stylesheet location
+            center: [-74.1, 40.6782], // center on Brooklyn
+            minZoom: 8,
+            zoom: 10.7 // set zoom level
+        });
+
+        map.addControl(new mapboxgl.NavigationControl());
+
+        map.on('load', function () {
+            
+
+            // Scale
+            var scale = new mapboxgl.ScaleControl({
+                maxWidth: 80, // Set the maximum width of the scale control
+                unit: 'imperial' // Choose between 'imperial' or 'metric'
+            });
+            map.addControl(scale, 'bottom-right');
+
+            // Declare timeSlider
+            var timeSlider = document.getElementById('time-slider');
+            var sliderValue = document.getElementById('slider-value');
+            var currentYear = parseInt(timeSlider.value) * 5 + 1820;
+
+            // Add the base Parks layer
+            map.addLayer({
+                id: 'Parks',
+                type: 'fill',
+                source: {
+                    type: 'vector',
+                    url: 'mapbox://syushen.3w22t1dq' // Your Mapbox tileset Map ID
+                },
+                'source-layer': 'B2ParkLand-4wdqbu', // name of tileset layer
+                paint: {
+                    'fill-color': ['rgb', 173, 219, 117],
+                    'fill-opacity': 0.8,
+                }
+            });
+
+            var timeSlider = document.getElementById('time-slider');
+            var sliderValue = document.getElementById('slider-value');
+
+            timeSlider.addEventListener('input', function (e) {
+                var year = parseInt(e.target.value) * 5 + 1820;
+                sliderValue.innerHTML = year;
+                updateMapData(year);
+            });
+
+            function updateMapData(year) {
+                map.setFilter('BigParks', ['==', 'year', year]);
+            }
+
+            // Set initial year to 1820
+            var initialYear = 1820;
+            timeSlider.value = (initialYear - 1820) / 5;
+            sliderValue.innerHTML = initialYear;
+            updateMapData(initialYear);
+
+            // Add the BigParks layer
+            map.addLayer({
+                id: 'BigParks',
+                type: 'fill',
+                source: {
+                    type: 'vector',
+                    url: 'mapbox://syushen.5l0yiq7a' // Your Mapbox tileset Map ID
+                },
+                'source-layer': 'B2ParkLand_Top24_4-aatm8t', // name of tileset layer
+                paint: {
+                    'fill-color': [
+                        'case',
+                        ['<', initialYear, ['get', 'InitialConstruction']],
+                        ['rgb', 191, 207, 204], // Fill color if the condition is true (year < InitialConstruction)
+                        ['<', initialYear, ['get', 'BecomingNearlyCurrentViewViaRenewal']],
+                        ['rgb', 113, 169, 148], // Fill color if the condition is false (year < BecomingNearlyCurrentViewViaRenewal)
+                        ['rgb', 28, 83, 72] // Fill color if the condition is false (year >= BecomingNearlyCurrentViewViaRenewal)
+                    ],
+                    'fill-opacity': 0.8
+                }
+            });
+
+            timeSlider.addEventListener('input', function (e) {
+                var year = parseInt(e.target.value) * 5 + 1820;
+                sliderValue.innerHTML = year;
+                currentYear = year; // Update the current year variable
+                updateMapData(year);
+            });
+
+            function updateMapData(year) {
+                map.setPaintProperty('BigParks', 'fill-color', [
+                    'case',
+                    ['<', year, ['get', 'InitialConstruction']],
+                    ['rgb', 191, 207, 204], // Fill color if year < InitialConstruction
+                    ['<', year, ['get', 'BecomingNearlyCurrentViewViaRenewal']],
+                    ['rgb', 113, 169, 148], // Fill color if year < BecomingNearlyCurrentViewViaRenewal
+                    ['rgb', 28, 83, 72] // Fill color if year >= BecomingNearlyCurrentViewViaRenewal
+                ]);
+            }
+
+
+            map.addLayer({
+                'id': 'park-districts-layer',
+                'type': 'line',
+                'source': {
+                    'type': 'vector',
+                    'url': 'mapbox://syushen.2w4n8b1w'
+                },
+                'source-layer': 'Brooklyn_Parks_Districts2_Dis-083v8l',
+                'paint': {
+                    'line-color': '#000000', // Black border color
+                    'line-width': 0.75
+                }
+            });
+
+        });
+
+        map.on('mouseleave', 'BigParks', function () {
+            map.getCanvas().style.cursor = '';
+        });
+
+        // Create a pop-up element
+        var popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false
+        });
+
+        // Keep track of the last hovered feature
+        var hoveredFeature = null;
+
+        // Add event listener to update the pop-up on mousemove
+        map.on('mousemove', 'BigParks', function (e) {
+            var InitialConstruction = e.features[0].properties.InitialConstruction;
+            var BecomingNearlyCurrentViewViaRenewal = e.features[0].properties.BecomingNearlyCurrentViewViaRenewal;
+
+            // Check if the hovered feature has changed
+            if (e.features[0] !== hoveredFeature) {
+                hoveredFeature = e.features[0];
+
+                // Set the pop-up content
+                popup.setLngLat(e.lngLat)
+                    .setHTML('Initial Construction: ' + InitialConstruction + '<br>' +
+                        'Renewal: ' + BecomingNearlyCurrentViewViaRenewal)
+                    .addTo(map);
+            }
+        });
+
+        // Add event listener to remove the pop-up when leaving the layer
+        map.on('mouseleave', 'BigParks', function () {
+            popup.remove();
+            hoveredFeature = null; // Reset the hovered feature
+        });
+
+    </script>
+
+</body>
+
+</html>

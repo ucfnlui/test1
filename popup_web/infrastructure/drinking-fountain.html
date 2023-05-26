@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <title>Slide 6: Vineyard Locations</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css' rel='stylesheet' />
+  <!-- loading font -->
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+  <script src="mapbox-gl-sync-move.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Titillium Web', sans-serif;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    </style </head><body><style>p {
+      font-size: 15px;
+    }
+
+    h1 {
+      font-size: 20px;
+      line-height: 30px;
+    }
+
+    h2 {
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #2DC4B2;
+    }
+
+    #console {
+      position: absolute;
+      overflow-y: scroll;
+      top: 0%;
+      height: 100%;
+      width: 19%;
+      background-color: white;
+      opacity: 0.9;
+      padding: 10px 10px;
+    }
+
+    .session {
+      margin-bottom: 20px;
+
+    }
+
+    .row {
+      min-height: 12px;
+      width: 100%
+    }
+
+    .colors {
+      background: linear-gradient(to right, #2dc4b2, #3bb3c3, #669ec4, #8b88b6, #a2719b);
+      ;
+      margin-bottom: 1%;
+    }
+
+    .label {
+      width: 13%;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .story {
+      scrollbar-width: auto;
+      background-color: #F5F5F5;
+      border: 1px solid #DDDDDD;
+      border-radius: 4px 0 4px 0;
+      height: 50%;
+      margin-bottom: 20px;
+      overflow: scroll;
+      overflow-x: hidden;
+      padding: 5px 5px 5px;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    body * {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      right: 31%
+    }
+
+    #after {
+      position: absolute;
+      top: 0;
+      left: 61%;
+      bottom: 0;
+      width: 50%;
+    }
+
+    #divider {
+      background-color: gray;
+      position: absolute;
+      left: 61%;
+      top: 0;
+      bottom: 0;
+      width: 0.2%;
+      z-index: 2;
+    }
+
+    .circle {
+      position: relative;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      float: right;
+    }
+  </style>
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
+  <link rel='stylesheet'
+    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css' type='text/css' />
+
+  <div id='before' class='map'></div>
+  <div id='divider'></div>
+  <div id='after' class='map'></div>
+  <div id='console'>
+    <div id="session">
+      <h1>The Drinking Fountains in Brooklyn Parks</h1>
+      <p>Brooklyn, known for its numerous parks and green spaces, 
+        offers several drinking fountains to provide a convenient water source for park visitors. 
+        These fountains are essential for staying hydrated, 
+        especially during hot summer months or while engaging in physical activities.</p>
+      <p>Brooklyn's parks typically feature drinking fountains strategically placed throughout the park grounds. 
+         These fountains are designed to provide potable water for park visitors, ensuring easy access to hydration.</p>
+      <p>Drinking fountains are often installed in easily accessible areas, 
+         such as near entrances, playgrounds, picnic areas, or sports facilities. 
+         Park administrators strive to make them conveniently available to park users.
+      </p>
+      <p>In some instances, 
+         drinking fountains may be temporarily closed during the colder months to prevent damage from freezing temperatures. 
+         However, during the warmer seasons, they are typically in operation.
+      </p>
+      <p>These maps explore the distribution of drinking fountains in Brooklyn's parks. 
+         The heatmap examines the distribution of vineyards, weighted by their size in hectares.
+         From these maps, it is clear that drinking fountains are now present across Brooklyn's parks. 
+         Notably, there is a dense concentration within the north region. </p>
+
+      <h2>Country</h2>
+      <div class='row' id='filters'>
+        <input id='mapbox://styles/thezhao/clhkav07m01k401pn7c74botq' type='radio' name='toggle' value='all'
+          checked='checked'>
+        <label for='all'>All Dringking Fountains</label>
+        <br>
+        <input id='mapbox://styles/thezhao/clhqc97pb01rq01r0ewaq7dim' type='radio' name='toggle' value='Country'>
+        <label for='Country'>Thirty largest parks</label>
+        <br>
+      </div>
+      <div class='row labels'>
+
+        <h2>Legend</h2>
+        <div><span class="circle" , style="background-color: red"></span>All drinking fountains in Brooklyn</div>
+        <div><span class="circle" , style="background-color: rgb(129, 17, 135)"></span>Drinking fountains in 30 Largest Parks</div>
+        <div><span class="circle" , style="background-color: green"></span>Parklands</div>
+        <div><br></div>
+
+      </div>
+    </div>
+
+
+  </div>
+  <script>
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoidGhlemhhbyIsImEiOiJjbGRibmZzbTEwMmJwM3JubWVobXl2cThzIn0.fYQu-t1P8UxZ4vOk0Ep6JA';
+    var beforeMap = new mapboxgl.Map({
+      container: 'before',
+      style: 'mapbox://styles/thezhao/clhkav07m01k401pn7c74botq',
+      center: [-73.93, 40.65],
+      zoom: 11,
+    });
+    
+
+    var afterMap = new mapboxgl.Map({
+      container: 'after',
+      style: 'mapbox://styles/thezhao/clhj9dzr701jl01pgdagtab13',
+      center: [-73.928, 40.65],
+      zoom: 11
+
+    });
+
+
+
+    // coordination between the two maps
+    var disable = false;
+    beforeMap.on("move", function () {
+      if (!disable) {
+        var center = beforeMap.getCenter();
+        var zoom = beforeMap.getZoom();
+        var pitch = beforeMap.getPitch();
+        var bearing = beforeMap.getBearing();
+
+        disable = true;
+        afterMap.setCenter(center);
+        afterMap.setZoom(zoom);
+        afterMap.setPitch(pitch);
+        afterMap.setBearing(bearing);
+        disable = false;
+      }
+    })
+
+    afterMap.on("move", function () {
+      if (!disable) {
+        var center = afterMap.getCenter();
+        var zoom = afterMap.getZoom();
+        var pitch = afterMap.getPitch();
+        var bearing = afterMap.getBearing();
+
+        disable = true;
+        beforeMap.setCenter(center);
+        beforeMap.setZoom(zoom);
+        beforeMap.setPitch(pitch);
+        beforeMap.setBearing(bearing);
+        disable = false;
+      }
+    })
+
+
+    beforeMap.on('click', function (e) {
+      var features = beforeMap.queryRenderedFeatures(e.point, {
+
+      });
+
+      if (!features.length) {
+        return;
+      }
+
+      var feature = features[0];
+
+    //  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    //     .setLngLat(feature.geometry.coordinates)
+    //     .setHTML('<h3>' + feature.properties["SIGNNAME"] + '<h4> Country: ' + feature.properties["BOROUGH"] 
+    //         + '<h4> County: ' + feature.properties["Vineyard County"])
+    //     .addTo(beforeMap);
+
+
+    });
+
+    afterMap.on('click', function (e) {
+      var features = afterMap.queryRenderedFeatures(e.point, {
+
+      });
+
+      if (!features.length) {
+        return;
+      }
+
+      var feature = features[0];
+
+      // var popup = new mapboxgl.Popup({ offset: [0, -15] })
+      //   .setLngLat(feature.geometry.coordinates)
+      //   .setHTML('<h3>' + feature.properties["Vineyard Name"] + '<h4> HA: ' + feature.properties["Ha of planted vines"])
+      //   .addTo(afterMap);
+
+
+    });
+    afterMap.on('mouseenter', 'a2', function () {
+      afterMap.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    afterMap.on('mouseleave', 'a2', function () {
+      afterMap.getCanvas().style.cursor = '';
+    });
+
+    const layerList = document.getElementById('session');
+    const inputs = layerList.getElementsByTagName('input');
+
+    for (const input of inputs) {
+      input.onclick = (layer) => {
+        const layerId = layer.target.id;
+        beforeMap.setStyle(layerId);
+      };
+    }
+
+  </script>
+
+  </body>
+
+</html>
